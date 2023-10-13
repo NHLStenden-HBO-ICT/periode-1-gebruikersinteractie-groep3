@@ -8,9 +8,9 @@
         Title="GameWindow" Height="450" Width="800">
     <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue">
 
-        <Rectangle Name="Player" Fill="Red" Width="40" Height="60" Canvas.Left="40" Canvas.Top="350"/>
+        <Rectangle Name="Player" Fill="Red" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
 
-        <Rectangle Name="Ground" Fill="Green" Width="800" Height="40" Canvas.Left="0" Canvas.Top="410"/>
+        <Rectangle Name="Ground" Fill="Green" Width="800" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
 
     </Canvas>
 </Window>
