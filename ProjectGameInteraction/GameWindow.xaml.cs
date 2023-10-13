@@ -21,8 +21,8 @@ namespace ProjectGameInteraction
     {
         DispatcherTimer gameTimer = new DispatcherTimer();
 
-        private bool moveLeft, moveRight, jump;
-        private double speedX, speedY, speed = 5;
+        private bool moveLeft, moveRight, jump, onGround = true;
+        private double speedX, speedY, speed = 10;
 
 
         public GameWindow()
@@ -81,8 +81,32 @@ namespace ProjectGameInteraction
 
         private void GameTick(object? sender, EventArgs e)
         {
+            // Jump
+            if (jump && onGround)
+            {
+                speedY = 40;
+                onGround = false;
+            }
+
+            // Gravity
+            if (speedY > -100)
+            {
+                speedY -= 5;
+            }
+
+            // Player sprite movement
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + speedX);
-            Canvas.SetTop(Player, Canvas.GetTop(Player) - speedY);
+            Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
+
+            // Ground Collision
+            Rect rect1 = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
+            Rect rect2 = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
+            if (rect1.IntersectsWith(rect2))
+            {
+                speedY = 0;
+                Canvas.SetBottom(Player, Canvas.GetBottom(Ground) + Ground.Height);
+                onGround = true;
+            }
         }
     }
 }
