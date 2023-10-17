@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,11 @@ namespace ProjectGameInteraction
     public partial class GameWindow : Window
     {
         DispatcherTimer gameTimer = new DispatcherTimer();
+        DispatcherTimer levelTimer = new DispatcherTimer();
 
         private bool moveLeft, moveRight, jump, onGround = true;
         private double speedX, speedY, speed = 10;
+        private const int LEVELTIME = 300;
 
 
         public GameWindow()
@@ -31,10 +34,37 @@ namespace ProjectGameInteraction
             InitializeComponent();
             GameCanvas.Focus();
 
+            // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
             gameTimer.Tick += GameTick;
             gameTimer.Start();
+
+            // level timer
+            levelTimer.Interval = TimeSpan.FromSeconds(1);
+            levelTimer.Tick += LevelTick;
+            levelTimer.Start();
+            levelTime = LEVELTIME;
+            TimerLabel.Content = levelTime;
         }
+
+        private int levelTime;
+        private void LevelTick(object? sender, EventArgs e) 
+        {
+            if (levelTime == 0)
+            {
+                MainWindow window = new();
+                Close();
+                window.Show();
+                levelTimer.Stop();
+            } else
+            {
+                levelTime--;
+                TimerLabel.Content = levelTime;
+            }
+        }
+
+
+
 
         private void IsKeyDown(object sender, KeyEventArgs e)
         {
