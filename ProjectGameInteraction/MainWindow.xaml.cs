@@ -27,18 +27,19 @@ namespace ProjectGameInteraction
             WindowStyle = WindowStyle.None;
         }
 
+        // PC -> Parental Control
         private void PCClick(object sender, RoutedEventArgs e)
         {
             parentalcontrolmenu pc = new parentalcontrolmenu();
-            pc.Visibility = Visibility.Visible;
-
+            pc.Show();
+        
             this.Close();
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
             settings set = new settings();
-            set.Visibility = Visibility.Visible;
+            set.Show();
 
             this.Close();
         }
@@ -46,7 +47,7 @@ namespace ProjectGameInteraction
         private void ShopClick(object sender, RoutedEventArgs e)
         {
             shop sh = new shop();
-            sh.Visibility = Visibility.Visible;
+            sh.Show();
 
             this.Close();
         }
@@ -54,7 +55,7 @@ namespace ProjectGameInteraction
         private void PlayClick(object sender, RoutedEventArgs e)
         {
             levelmenu lm = new levelmenu();
-            lm.Visibility = Visibility.Visible;
+            lm.Show();
 
             this.Close();
         }
