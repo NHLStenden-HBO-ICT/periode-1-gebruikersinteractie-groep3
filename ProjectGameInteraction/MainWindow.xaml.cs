@@ -23,13 +23,46 @@ namespace ProjectGameInteraction
         public MainWindow()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e)
+        // PC -> Parental Control
+        private void PCClick(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow();
-            gameWindow.Show();
-            this.Close();
+            parentalcontrolmenu pc = new parentalcontrolmenu();
+            pc.Show();
+
+            Close();
+        }
+
+        private void SettingsClick(object sender, RoutedEventArgs e)
+        {
+            settings set = new settings();
+            set.Show();
+
+            Close();
+        }
+
+        private void ShopClick(object sender, RoutedEventArgs e)
+        {
+            shop sh = new shop();
+            sh.Show();
+
+            Close();
+        }
+
+        private void PlayClick(object sender, RoutedEventArgs e)
+        {
+            levelmenu lm = new levelmenu();
+            lm.Show();
+
+            Close();
+        }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
