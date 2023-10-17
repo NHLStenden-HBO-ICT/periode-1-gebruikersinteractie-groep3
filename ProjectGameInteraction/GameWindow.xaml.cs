@@ -154,7 +154,7 @@ namespace ProjectGameInteraction
                 Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
                 onGround = true;
             }
-            else if (((Canvas.GetLeft(platform1) == Canvas.GetLeft(Player)+Player.Width) || (Canvas.GetLeft(platform1) + platform1.Width == Canvas.GetLeft(Player))) && playerRect.IntersectsWith(platformRect1))
+            else if (((Canvas.GetLeft(platform1) == Canvas.GetLeft(Player) + Player.Width) || (Canvas.GetLeft(platform1) + platform1.Width == Canvas.GetLeft(Player))) && playerRect.IntersectsWith(platformRect1))
             {
                 speedY = 0;
                 speedX = 0;
@@ -168,14 +168,23 @@ namespace ProjectGameInteraction
             }
 
             // Enemy Collision (TEMP)
-            if (enemyRect.IntersectsWith(playerRect))
+            if (Canvas.GetBottom(Player) > Canvas.GetBottom(Enemy1) && playerRect.IntersectsWith(enemyRect))
             {
-                // Enemy turns around (for collision with walls) (is temporary)
+                speedY = 30;
+                Canvas.SetBottom(Enemy1, -100);
+                GameCanvas.Children.Remove(Enemy1);
+                
+            }
+            else if (enemyRect.IntersectsWith(playerRect))
+            {
+                // Enemy turns around (for collision with walls) (is temporary until walls added)
                 enemySpeed *= -1;
 
-                //MessageBox.Show("You died!");
-                //gameTimer.Stop();
-                //Close();
+                MessageBox.Show("You died!");
+                gameTimer.Stop();
+                MainWindow window = new();
+                window.Show();
+                Close();
             }
             
         }
