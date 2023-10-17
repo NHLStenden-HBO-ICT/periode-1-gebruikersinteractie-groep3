@@ -73,5 +73,10 @@ namespace ProjectGameInteraction
         {
 
         }
+
+        private void EnteredPinTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
