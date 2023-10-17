@@ -12,9 +12,7 @@
 
         <Rectangle Name="Ground" Fill="Green" Width="800" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
         <Rectangle Name="platform1" Fill="Black" Width="200" Height="40" Canvas.Left="300" Canvas.Bottom="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="721" Canvas.Top="15" >
-
-        </Label>
+        <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="721" Canvas.Top="15" />
 
     </Canvas>
 </Window>
