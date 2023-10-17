@@ -11,7 +11,7 @@
         <Rectangle Name="Player" Fill="Red" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
 
         <Rectangle Name="Ground" Fill="Green" Width="800" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
-        <Rectangle Name="platform1" Fill="Black" Width="200" Height="40" Canvas.Left="300" Canvas.Bottom="160" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Name="platform1" Fill="Black" Width="200" Height="40" Canvas.Left="300" Canvas.Bottom="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
     </Canvas>
 </Window>
