@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -99,13 +100,35 @@ namespace ProjectGameInteraction
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
 
             // Ground Collision
-            Rect rect1 = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
-            Rect rect2 = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
-            if (rect1.IntersectsWith(rect2))
+            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
+            Rect groundRect = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
+            if (playerRect.IntersectsWith(groundRect))
             {
                 speedY = 0;
                 Canvas.SetBottom(Player, Canvas.GetBottom(Ground) + Ground.Height);
                 onGround = true;
+            }
+
+
+            Rect platformRect1 = new(Canvas.GetLeft(platform1), Canvas.GetBottom(platform1), platform1.Width, platform1.Height);
+
+            if (Canvas.GetBottom(Player) > Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
+            {
+                speedY = 0;
+                Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
+                onGround = true;
+            }
+            else if (((Canvas.GetLeft(platform1) == Canvas.GetLeft(Player)+Player.Width) || (Canvas.GetLeft(platform1) + platform1.Width == Canvas.GetLeft(Player))) && playerRect.IntersectsWith(platformRect1))
+            {
+                speedY = 0;
+                speedX = 0;
+                onGround = false;
+            }
+            else if ((playerRect.IntersectsWith(platformRect1)))
+            {
+                speedY = 0;
+                Canvas.SetBottom(Player, Canvas.GetBottom(platform1) - Player.Height);
+                onGround = false;
             }
         }
     }
