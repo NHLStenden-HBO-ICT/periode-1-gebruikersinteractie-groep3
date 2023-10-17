@@ -21,13 +21,16 @@ namespace ProjectGameInteraction
     {
         DispatcherTimer gameTimer = new DispatcherTimer();
 
-        private bool moveLeft, moveRight, jump, onGround = true;
+        private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
+        private const int LEVELTIME = 300;
+        private (double x, double y) lastCoordinate;
 
 
         public GameWindow()
         {
             InitializeComponent();
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
 
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -42,12 +45,10 @@ namespace ProjectGameInteraction
                 case Key.Right:
                 case Key.D:
                     moveRight = true;
-                    speedX = speed;
                     break;
                 case Key.Left:
                 case Key.A:
                     moveLeft = true;
-                    speedX = -speed;
                     break;
                 case Key.Up:
                 case Key.W:
@@ -63,13 +64,11 @@ namespace ProjectGameInteraction
             {
                 case Key.Right:
                 case Key.D:
-                    moveLeft = false;
-                    speedX = 0;
+                    moveRight = false;
                     break;
                 case Key.Left:
                 case Key.A:
-                    moveRight = false;
-                    speedX = 0;
+                    moveLeft = false;
                     break;
                 case Key.Up:
                 case Key.W:
@@ -81,6 +80,15 @@ namespace ProjectGameInteraction
 
         private void GameTick(object? sender, EventArgs e)
         {
+            // Movement
+            if (moveLeft && !moveRight)
+                speedX = -speed;
+            else if (moveRight && !moveLeft)
+                speedX = speed;
+            else
+                speedX = 0;
+
+
             // Jump
             if (jump && onGround)
             {
@@ -107,6 +115,33 @@ namespace ProjectGameInteraction
                 Canvas.SetBottom(Player, Canvas.GetBottom(Ground) + Ground.Height);
                 onGround = true;
             }
+
+            Rect platformRect1 = new(Canvas.GetLeft(platform1), Canvas.GetBottom(platform1), platform1.Width, platform1.Height);
+
+            if (lastCoordinate.y >= Canvas.GetBottom(platform1) + platform1.Height && Canvas.GetBottom(Player) > Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
+            {
+                speedY = 0;
+                Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
+                onGround = true;
+            }
+            else if (lastCoordinate.y <= Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
+            {
+                speedY = 0;
+                Canvas.SetBottom(Player, Canvas.GetBottom(platform1) - Player.Height);
+                onGround = false;
+            }
+            else if (lastCoordinate.x <= Canvas.GetLeft(platform1) && (Canvas.GetLeft(platform1) <= Canvas.GetLeft(Player) + Player.Width) && playerRect.IntersectsWith(platformRect1))
+            {
+                speedX = 0;
+                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) - Player.Width);
+            }
+            else if (lastCoordinate.x >= Canvas.GetLeft(platform1) + platform1.Width && (Canvas.GetLeft(platform1) + platform1.Width >= Canvas.GetLeft(Player)) && playerRect.IntersectsWith(platformRect1))
+            {
+                speedX = 0;
+                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) + platform1.Width);
+            }
+
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
     }
 }
