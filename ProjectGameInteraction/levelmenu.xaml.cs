@@ -29,17 +29,17 @@ namespace ProjectGameInteraction
         private void ReturnClick(object sender, RoutedEventArgs e)
         {
             MainWindow mw = new MainWindow();
-            mw.Visibility = Visibility.Visible;
+            mw.Show();
 
-            this.Close();
+            Close();
         }
 
         private void SpeelNu(object sender, RoutedEventArgs e)
         {
             GameWindow gw = new GameWindow();
-            gw.Visibility = Visibility.Visible;
+            gw.Show();
 
-            this.Close();
+            Close();
         }
     }
 }

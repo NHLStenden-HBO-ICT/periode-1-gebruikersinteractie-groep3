@@ -32,8 +32,8 @@ namespace ProjectGameInteraction
         {
             parentalcontrolmenu pc = new parentalcontrolmenu();
             pc.Show();
-        
-            this.Close();
+
+            Close();
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace ProjectGameInteraction
             settings set = new settings();
             set.Show();
 
-            this.Close();
+            Close();
         }
 
         private void ShopClick(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace ProjectGameInteraction
             shop sh = new shop();
             sh.Show();
 
-            this.Close();
+            Close();
         }
 
         private void PlayClick(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ namespace ProjectGameInteraction
             levelmenu lm = new levelmenu();
             lm.Show();
 
-            this.Close();
+            Close();
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)

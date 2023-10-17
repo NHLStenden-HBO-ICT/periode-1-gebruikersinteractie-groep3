@@ -29,9 +29,9 @@ namespace ProjectGameInteraction
         private void ReturnClick(object sender, RoutedEventArgs e)
         {
             MainWindow mw = new MainWindow();
-            mw.Visibility = Visibility.Visible;
+            mw.Show();
 
-            this.Close();
+            Close();
         }
     }
 }
