@@ -24,8 +24,10 @@ namespace ProjectGameInteraction
         DispatcherTimer gameTimer = new DispatcherTimer();
         DispatcherTimer levelTimer = new DispatcherTimer();
 
-        private bool moveLeft, moveRight, jump, onGround = true;
+        private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
+        private const int LEVELTIME = 300;
+        private (double x, double y) lastCoordinate;
         private double enemySpeed = 3;
         
         private const int LEVELTIME = 300;
@@ -34,6 +36,7 @@ namespace ProjectGameInteraction
         public GameWindow()
         {
             InitializeComponent();
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
 
             // game tick
@@ -75,12 +78,10 @@ namespace ProjectGameInteraction
                 case Key.Right:
                 case Key.D:
                     moveRight = true;
-                    speedX = speed;
                     break;
                 case Key.Left:
                 case Key.A:
                     moveLeft = true;
-                    speedX = -speed;
                     break;
                 case Key.Up:
                 case Key.W:
@@ -96,13 +97,11 @@ namespace ProjectGameInteraction
             {
                 case Key.Right:
                 case Key.D:
-                    moveLeft = false;
-                    speedX = 0;
+                    moveRight = false;
                     break;
                 case Key.Left:
                 case Key.A:
-                    moveRight = false;
-                    speedX = 0;
+                    moveLeft = false;
                     break;
                 case Key.Up:
                 case Key.W:
@@ -114,6 +113,15 @@ namespace ProjectGameInteraction
 
         private void GameTick(object? sender, EventArgs e)
         {
+            // Movement
+            if (moveLeft && !moveRight)
+                speedX = -speed;
+            else if (moveRight && !moveLeft)
+                speedX = speed;
+            else
+                speedX = 0;
+
+
             // Jump
             if (jump && onGround)
             {
@@ -168,18 +176,24 @@ namespace ProjectGameInteraction
                 Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
                 onGround = true;
             }
-            else if (((Canvas.GetLeft(platform1) == Canvas.GetLeft(Player) + Player.Width) || (Canvas.GetLeft(platform1) + platform1.Width == Canvas.GetLeft(Player))) && playerRect.IntersectsWith(platformRect1))
-            {
-                speedY = 0;
-                speedX = 0;
-                onGround = false;
-            }
-            else if ((playerRect.IntersectsWith(platformRect1)))
+            else if (lastCoordinate.y <= Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
             {
                 speedY = 0;
                 Canvas.SetBottom(Player, Canvas.GetBottom(platform1) - Player.Height);
                 onGround = false;
             }
+            else if (lastCoordinate.x <= Canvas.GetLeft(platform1) && (Canvas.GetLeft(platform1) <= Canvas.GetLeft(Player) + Player.Width) && playerRect.IntersectsWith(platformRect1))
+            {
+                speedX = 0;
+                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) - Player.Width);
+            }
+            else if (lastCoordinate.x >= Canvas.GetLeft(platform1) + platform1.Width && (Canvas.GetLeft(platform1) + platform1.Width >= Canvas.GetLeft(Player)) && playerRect.IntersectsWith(platformRect1))
+            {
+                speedX = 0;
+                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) + platform1.Width);
+            }
+
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
 
             // Enemy Collision (TEMP)
             if (Canvas.GetBottom(Player) > Canvas.GetBottom(Enemy1) && playerRect.IntersectsWith(enemyRect))
@@ -200,7 +214,6 @@ namespace ProjectGameInteraction
                 window.Show();
                 Close();
             }
-            
         }
     }
 }
