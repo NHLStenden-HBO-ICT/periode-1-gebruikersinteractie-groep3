@@ -11,5 +11,9 @@
         <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
+        <TextBox x:Name="PinInputTextBox" HorizontalAlignment="Left" Height="182" Margin="594,138,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="624" Background="LightGray"/>
+        <Button Content="Opslaan" HorizontalAlignment="Left" Margin="692,540,0,0" VerticalAlignment="Top" Width="370" Height="102" Click="SetPinButton_Click"/>
+        <Button Content="Ontgrendel" HorizontalAlignment="Left" Margin="692,668,0,0" VerticalAlignment="Top" Width="370" Height="102" Click="UnlockButton_Click"/>
+        <TextBox x:Name="EnteredPinTextBox" HorizontalAlignment="Left" Height="182" Margin="594,350,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="624" Background="LightGray"/>
     </Grid>
 </Window>

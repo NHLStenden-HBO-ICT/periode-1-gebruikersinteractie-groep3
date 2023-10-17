@@ -19,6 +19,7 @@ namespace ProjectGameInteraction
     /// </summary>
     public partial class parentalcontrolmenu : Window
     {
+        
         public parentalcontrolmenu()
         {
             InitializeComponent();
@@ -32,6 +33,39 @@ namespace ProjectGameInteraction
             mw.Show();
 
             Close();
+        }
+
+        private string savedPin = "";
+        private void SetPinButton_Click(object sender, RoutedEventArgs e)
+        {
+            string newPin = PinInputTextBox.Text;
+
+            if (!string.IsNullOrWhiteSpace(newPin))
+            {
+                savedPin = newPin;
+                MessageBox.Show("Pincode ingesteld.");
+                PinInputTextBox.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Voer een geldige pincode in.");
+            }
+        }
+
+        private void UnlockButton_Click(object sender, RoutedEventArgs e)
+        {
+            string enteredPin = EnteredPinTextBox.Text;
+
+            if (enteredPin == savedPin)
+            {
+                ParentalControlTimerSet parentalTimerset = new ParentalControlTimerSet();
+                parentalTimerset.Show();
+            }
+            else
+            {
+                MessageBox.Show("Onjuiste pincode. Probeer opnieuw.");
+                EnteredPinTextBox.Clear();
+            }
         }
     }
 }
