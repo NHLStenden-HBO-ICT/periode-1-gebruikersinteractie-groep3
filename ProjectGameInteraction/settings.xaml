@@ -1,0 +1,26 @@
+﻿<Window x:Class="ProjectGameInteraction.settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectGameInteraction"
+        mc:Ignorable="d"
+        Title="settings" Height="1080" Width="1920">
+    <Grid>
+        <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
+        <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
+        </Button>
+
+        <Border HorizontalAlignment="Center" Width="1056" Height="776" Background="#d9d9d9" CornerRadius="50" Margin="0,54,0,0" VerticalAlignment="Top">
+            <Label Content="Instellingen" FontFamily="Baloo Bhai 2" FontSize="97" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Black"/>
+
+        </Border>
+        <Label Content="Helderheid" FontFamily="Ballo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,256,0,0"/>
+        <Label Content="Muziek" FontFamily="Ballo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,455,0,0" RenderTransformOrigin="0.207,0.449"/>
+        <Label Content="Hoofdvolume" FontFamily="Ballo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,675,0,0"/>
+        <Image Source="pack://application:,,,/afbeeldingen/helderheid.png" Width="112" Height="112" Margin="879,239,929,713"/>
+        <Image Source="pack://application:,,,/afbeeldingen/music.png" Width="112" Height="112" Margin="879,428,929,524" />
+        <Image Source="pack://application:,,,/afbeeldingen/volume.png" Width="112" Height="112" Margin="879,640,929,312"/>
+    </Grid>
+</Window>

@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\niels\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\niels\\.nuget\\packages",
-      "C:\\Users\\niels\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder"
+      "C:\\Users\\RensB\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\RensB\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

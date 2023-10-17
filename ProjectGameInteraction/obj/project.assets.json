@@ -8,24 +8,19 @@
     "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\niels\\.nuget\\packages\\": {},
-    "C:\\Users\\niels\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {}
+    "C:\\Users\\RensB\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\niels\\Bureaublad\\periode-1-gebruikersinteractie-groep3\\ProjectGameInteraction\\ProjectGameInteraction.csproj",
+      "projectUniqueName": "C:\\Users\\RensB\\source\\repos\\periode-1-gebruikersinteractie-groep3\\ProjectGameInteraction\\ProjectGameInteraction.csproj",
       "projectName": "ProjectGameInteraction",
-      "projectPath": "C:\\Users\\niels\\Bureaublad\\periode-1-gebruikersinteractie-groep3\\ProjectGameInteraction\\ProjectGameInteraction.csproj",
-      "packagesPath": "C:\\Users\\niels\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\niels\\Bureaublad\\periode-1-gebruikersinteractie-groep3\\ProjectGameInteraction\\obj\\",
+      "projectPath": "C:\\Users\\RensB\\source\\repos\\periode-1-gebruikersinteractie-groep3\\ProjectGameInteraction\\ProjectGameInteraction.csproj",
+      "packagesPath": "C:\\Users\\RensB\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\RensB\\source\\repos\\periode-1-gebruikersinteractie-groep3\\ProjectGameInteraction\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Users\\niels\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\niels\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Users\\niels\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+        "C:\\Users\\RensB\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
