@@ -112,11 +112,17 @@ namespace ProjectGameInteraction
 
             Rect platformRect1 = new(Canvas.GetLeft(platform1), Canvas.GetBottom(platform1), platform1.Width, platform1.Height);
 
-            if (playerRect.IntersectsWith(platformRect1))
+            if (Canvas.GetBottom(Player) > Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
             {
                 speedY = 0;
                 Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
                 onGround = true;
+            }
+            else if ((playerRect.IntersectsWith(platformRect1)))
+            {
+                speedY = 0;
+                Canvas.SetBottom(Player, Canvas.GetBottom(platform1) - Player.Height);
+                onGround = false;
             }
         }
     }
