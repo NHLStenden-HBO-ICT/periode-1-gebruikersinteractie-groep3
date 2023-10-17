@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +22,15 @@ namespace ProjectGameInteraction
     public partial class GameWindow : Window
     {
         DispatcherTimer gameTimer = new DispatcherTimer();
+        DispatcherTimer levelTimer = new DispatcherTimer();
 
         private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
         private const int LEVELTIME = 300;
         private (double x, double y) lastCoordinate;
+        private double enemySpeed = 3;
+        
+        private const int LEVELTIME = 300;
 
 
         public GameWindow()
@@ -33,10 +39,37 @@ namespace ProjectGameInteraction
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
 
+            // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
             gameTimer.Tick += GameTick;
             gameTimer.Start();
+
+            // level timer
+            levelTimer.Interval = TimeSpan.FromSeconds(1);
+            levelTimer.Tick += LevelTick;
+            levelTimer.Start();
+            levelTime = LEVELTIME;
+            TimerLabel.Content = levelTime;
         }
+
+        private int levelTime;
+        private void LevelTick(object? sender, EventArgs e) 
+        {
+            if (levelTime == 0)
+            {
+                MainWindow window = new();
+                Close();
+                window.Show();
+                levelTimer.Stop();
+            } else
+            {
+                levelTime--;
+                TimerLabel.Content = levelTime;
+            }
+        }
+
+
+
 
         private void IsKeyDown(object sender, KeyEventArgs e)
         {
@@ -106,19 +139,24 @@ namespace ProjectGameInteraction
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + speedX);
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
 
+            // Enemy sprite movement & Rect
+            Canvas.SetLeft(Enemy1, Canvas.GetLeft(Enemy1) - enemySpeed);
+            Rect enemyRect = new(Canvas.GetLeft(Enemy1), Canvas.GetBottom(Enemy1), Enemy1.Width, Enemy1.Height);
+
             // Ground Collision
-            Rect rect1 = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
-            Rect rect2 = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
-            if (rect1.IntersectsWith(rect2))
+            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
+            Rect groundRect = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
+            if (playerRect.IntersectsWith(groundRect))
             {
                 speedY = 0;
                 Canvas.SetBottom(Player, Canvas.GetBottom(Ground) + Ground.Height);
                 onGround = true;
             }
 
+            // Platform Collision
             Rect platformRect1 = new(Canvas.GetLeft(platform1), Canvas.GetBottom(platform1), platform1.Width, platform1.Height);
 
-            if (lastCoordinate.y >= Canvas.GetBottom(platform1) + platform1.Height && Canvas.GetBottom(Player) > Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
+            if (Canvas.GetBottom(Player) > Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
             {
                 speedY = 0;
                 Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
@@ -142,6 +180,26 @@ namespace ProjectGameInteraction
             }
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
+
+            // Enemy Collision (TEMP)
+            if (Canvas.GetBottom(Player) > Canvas.GetBottom(Enemy1) && playerRect.IntersectsWith(enemyRect))
+            {
+                speedY = 30;
+                Canvas.SetBottom(Enemy1, -100);
+                GameCanvas.Children.Remove(Enemy1);
+                
+            }
+            else if (enemyRect.IntersectsWith(playerRect))
+            {
+                // Enemy turns around (for collision with walls) (is temporary until walls added)
+                enemySpeed *= -1;
+
+                MessageBox.Show("You died!");
+                gameTimer.Stop();
+                MainWindow window = new();
+                window.Show();
+                Close();
+            }
         }
     }
 }
