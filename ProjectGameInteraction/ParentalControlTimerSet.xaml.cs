@@ -22,8 +22,16 @@ namespace ProjectGameInteraction
         public ParentalControlTimerSet()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
         }
 
-        
+        private void ReturnToParentalMenu_Click(object sender, RoutedEventArgs e)
+        {
+            parentalcontrolmenu pc = new parentalcontrolmenu();
+            pc.Show();
+            
+            Close();
+        }
     }
 }

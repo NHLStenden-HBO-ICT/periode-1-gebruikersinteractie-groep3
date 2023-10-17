@@ -60,12 +60,18 @@ namespace ProjectGameInteraction
             {
                 ParentalControlTimerSet parentalTimerset = new ParentalControlTimerSet();
                 parentalTimerset.Show();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Onjuiste pincode. Probeer opnieuw.");
                 EnteredPinTextBox.Clear();
             }
+        }
+
+        private void PinInputTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

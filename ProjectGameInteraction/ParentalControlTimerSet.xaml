@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectGameInteraction"
         mc:Ignorable="d"
-        Title="ParentalControlTimerSet" Height="450" Width="800">
+        Title="ParentalControlTimerSet" Height="1080" Width="1920">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="202" Margin="259,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="258"/>
-
+        <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
+        <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent"  HorizontalAlignment="Left" VerticalAlignment="Top" Click="ReturnToParentalMenu_Click">
+            <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
+        </Button>
     </Grid>
 </Window>
