@@ -26,7 +26,6 @@ namespace ProjectGameInteraction
 
         private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
-        private const int LEVELTIME = 300;
         private (double x, double y) lastCoordinate;
         private double enemySpeed = 3;
         
