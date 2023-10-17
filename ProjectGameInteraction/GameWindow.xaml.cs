@@ -131,6 +131,20 @@ namespace ProjectGameInteraction
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + speedX);
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
 
+            // Wallls so player can't run off screen left side at the start
+            if (Canvas.GetLeft(Player) <= 0)
+            {
+                
+                Canvas.SetLeft(Player, 0);
+            }
+
+            if (Canvas.GetLeft(Enemy1) <= 0)
+            {
+                enemySpeed *= -1 ;
+                
+            }
+
+
             // Enemy sprite movement & Rect
             Canvas.SetLeft(Enemy1, Canvas.GetLeft(Enemy1) - enemySpeed);
             Rect enemyRect = new(Canvas.GetLeft(Enemy1), Canvas.GetBottom(Enemy1), Enemy1.Width, Enemy1.Height);
