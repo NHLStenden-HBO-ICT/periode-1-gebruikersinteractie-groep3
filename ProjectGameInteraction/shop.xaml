@@ -11,5 +11,13 @@
         <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
+        <Image x:Name="Coins_Count_Symbol" Source="/3885422.png" Margin="538,-131,140,-385" RenderTransformOrigin="1,0">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock x:Name="coinCountTextBlock" Text="0" FontSize="48" Margin="1820,66,51,929" />
     </Grid>
 </Window>

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="3885422.png" />
     <None Remove="Afbeeldingen\alarmclock.png" />
     <None Remove="Afbeeldingen\citybackground.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
@@ -22,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="3885422.png" />
     <Resource Include="Afbeeldingen\alarmclock.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

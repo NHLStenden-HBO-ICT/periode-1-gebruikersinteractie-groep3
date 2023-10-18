@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Numerics;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -132,6 +134,7 @@ namespace ProjectGameInteraction
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
 
             // Enemy sprite movement & Rect
+            
             Canvas.SetLeft(Enemy1, Canvas.GetLeft(Enemy1) - enemySpeed);
             Rect enemyRect = new(Canvas.GetLeft(Enemy1), Canvas.GetBottom(Enemy1), Enemy1.Width, Enemy1.Height);
 
@@ -167,14 +170,7 @@ namespace ProjectGameInteraction
                 onGround = false;
             }
 
-            // Enemy Collision (TEMP)
-            if (Canvas.GetBottom(Player) > Canvas.GetBottom(Enemy1) && playerRect.IntersectsWith(enemyRect))
-            {
-                speedY = 30;
-                Canvas.SetBottom(Enemy1, -100);
-                GameCanvas.Children.Remove(Enemy1);
-                
-            }
+            
             else if (enemyRect.IntersectsWith(playerRect))
             {
                 // Enemy turns around (for collision with walls) (is temporary until walls added)
@@ -186,7 +182,29 @@ namespace ProjectGameInteraction
                 window.Show();
                 Close();
             }
-            
+            // Enemy Collision (TEMP)
+            if (Canvas.GetBottom(Player) > Canvas.GetBottom(Enemy1) && playerRect.IntersectsWith(enemyRect))
+            {
+                speedY = 30;
+                GameCanvas.Children.Remove(this.Enemy1);
+                enemyRect.Equals(false);
+
+
+            }
+            // coin collection system
+            int coinCount = 0;
+            Rect coinRect = new Rect(Canvas.GetLeft(Coin_Collect), Canvas.GetTop(Coin_Collect), Coin_Collect.Width, Coin_Collect.Height);
+
+            if (playerRect.IntersectsWith(coinRect))
+            {
+                coinCount++;
+                string coincountstring = coinCount.ToString();
+                TextBlock coincountTextBlock = new TextBlock();
+                coinCountTextBlock.Text = coincountstring;
+                Coin_Collect.Visibility = Visibility.Collapsed;
+            }
+            else return;
+
         }
     }
 }

@@ -15,5 +15,25 @@
         <Rectangle Name="platform1" Fill="Black" Width="200" Height="40" Canvas.Left="300" Canvas.Bottom="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="721" Canvas.Top="15" />
 
+        <!--coins counter-->
+        <Grid HorizontalAlignment="Left" Canvas.Left="9" VerticalAlignment="Center">
+            <Image x:Name="Coins_Count_Symbol" Source="/3885422.png" Margin="-614,-1,638,-169" RenderTransformOrigin="1,0">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="0.1" ScaleY="0.1">
+                        </ScaleTransform>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <TextBlock x:Name="coinCountTextBlock" Text="0" FontSize="24" Margin="89,11,581,445" />
+        </Grid>
+        <!--collectable coin-->
+        <Image x:Name="Coin_Collect" Source="/3885422.png" RenderTransformOrigin="1,0" Canvas.Left="-117" Canvas.Top="189" Height="496" Width="463" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
     </Canvas>
 </Window>
