@@ -7,9 +7,17 @@
         mc:Ignorable="d"
         Title="ParentalControlTimerSet" Height="1080" Width="1920">
     <Grid>
-        <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
+        <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill" RenderTransformOrigin="0.474,0.497"/>
         <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent"  HorizontalAlignment="Left" VerticalAlignment="Top" Click="ReturnToParentalMenu_Click">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
+        <Label Content="Voer hier de tijd in minuten in:" FontFamily="Baloo Bhai 2" FontSize="24" HorizontalAlignment="Left" Height="72" Margin="189,300,0,0" VerticalAlignment="Top" Width="500" Padding="89,18" Background="LightGray" FontWeight="Bold"/>
+        <TextBox Name="timerTextBox" FontFamily="Digital-7" FontSize="200" Width="500" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="189,372,0,0" Background="LightGray" BorderThickness="0"/>
+        <Button Content="Start Timer" FontFamily="Baloo Bhai 2" FontSize="45"  Width="250" Height="75" Click="StartTimer_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="783,372,0,0" />
+        <Button Content="Reset Timer" FontFamily="Baloo Bhai 2" FontSize="45" Width="250" Height="75" Click="ResetTimer_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="783,490,0,0" />
+        <Label Content="Resterende tijd:" FontFamily="Baloo Bhai 2" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Height="273" Margin="1105,292,0,0" VerticalAlignment="Top" Width="500" Padding="160,18" Background="LightGray"/>
+        <TextBlock Name="timerDisplay" FontFamily="Digital-7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1105,372,0,0" FontSize="200" Width="500" Height="200" Background="Transparent" Padding="43,0"/>
+        
+
     </Grid>
 </Window>
