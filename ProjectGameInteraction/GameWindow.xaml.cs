@@ -138,7 +138,7 @@ namespace ProjectGameInteraction
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + speedX);
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
 
-            // Wallls so player can't run off screen left side at the start
+            // Walls so player can't run off screen left side at the start
             if (Canvas.GetLeft(Player) <= 0)
             {
                 
@@ -192,10 +192,9 @@ namespace ProjectGameInteraction
                 Canvas.SetLeft(Player, Canvas.GetLeft(platform1) + platform1.Width);
             }
 
-            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
-
+           
             // Enemy Collision (TEMP)
-            if (Canvas.GetBottom(Player) > Canvas.GetBottom(Enemy1) && playerRect.IntersectsWith(enemyRect))
+            if (lastCoordinate.y > Canvas.GetBottom(Enemy1) + Enemy1.Height && playerRect.IntersectsWith(enemyRect))
             {
                 speedY = 30;
                 Canvas.SetBottom(Enemy1, -100);
@@ -213,6 +212,8 @@ namespace ProjectGameInteraction
                 window.Show();
                 Close();
             }
+
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
     }
 }
