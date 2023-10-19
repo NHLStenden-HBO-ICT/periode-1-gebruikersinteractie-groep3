@@ -38,21 +38,32 @@ namespace ProjectGameInteraction
             Close();
         }
 
+        private bool timerRunning = false;
         private void StartTimer_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0 && minutes <= 60)
+            if (!timerRunning)
             {
-                // Converteer de ingevoerde minuten naar seconden
-                timerDuration = minutes * 60;
+                if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0 && minutes <= 60)
+                {
+                    // Converteer de ingevoerde minuten naar seconden
+                    timerDuration = minutes * 60;
 
-                timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Tick += Timer_Tick;
-                timer.Start();
+                    timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(1);
+                    timer.Tick += Timer_Tick;
+                    timer.Start();
+
+                    timerRunning = true; // Markeer de timer als actief
+                    timerTextBox.IsEnabled = false; // Schakel het tekstvak uit
+                }
+                else
+                {
+                    MessageBox.Show("Voer een geldige timerduur in (positieve gehele getallen minder dan of gelijk aan 60 minuten).");
+                }
             }
             else
             {
-                MessageBox.Show("Voer een geldige timerduur in (positieve gehele getallen minder dan of gelijk aan 60 minuten).");
+                MessageBox.Show("De timer is al actief. Wacht tot deze is verlopen voordat je een nieuwe timer start.");
             }
         }
 
@@ -79,6 +90,12 @@ namespace ProjectGameInteraction
                 timer.Stop();
                 timerDuration = 0; // Stel de timerduur op nul in om te resetten
                 timerTextBox.Text = ""; // Leeg de TextBox voor de timerduur
+                MessageBox.Show("Log opnieuw in om een nieuwe timer te zetten" + Environment.NewLine + "U gaat nu terug naar het parental control inlog menu.", "Speeltijd Gereset", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+                parentalcontrolmenu pc = new parentalcontrolmenu();
+                pc.Show();
+
+                Close();
             }
         }
 
