@@ -31,6 +31,7 @@ namespace ProjectGameInteraction
         
         private const int LEVELTIME = 300;
 
+        private double cameraOffsetX = 0; // Track the camera offset
 
         public GameWindow()
         {
@@ -114,12 +115,28 @@ namespace ProjectGameInteraction
         {
             // Movement
             if (moveLeft && !moveRight)
+            {
                 speedX = -speed;
+                
+                
+            }                
             else if (moveRight && !moveLeft)
+            {
                 speedX = speed;
+                
+            }
             else
+            {
                 speedX = 0;
+            }
 
+            double playerX = Canvas.GetLeft(Player);
+            double canvasWidth = GameCanvas.ActualWidth;
+            double cameraCenterX = canvasWidth / 2;
+            cameraOffsetX = playerX - cameraCenterX;
+
+            // Adjust the canvas position to follow the player
+            GameCanvas.RenderTransform = new TranslateTransform(-cameraOffsetX, 0);
 
             // Jump
             if (jump && onGround)
@@ -137,6 +154,7 @@ namespace ProjectGameInteraction
             // Player sprite movement
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + speedX);
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
+
 
             // Walls so player can't run off screen left side at the start
             if (Canvas.GetLeft(Player) <= 0)
@@ -215,5 +233,6 @@ namespace ProjectGameInteraction
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
+        
     }
 }
