@@ -32,6 +32,7 @@ namespace ProjectGameInteraction
         private const int LEVELTIME = 300;
 
         private double cameraOffsetX = 0; // Track the camera offset
+        private const double GAMEWINDOWWIDTH = 800;
 
         public GameWindow()
         {
@@ -130,13 +131,21 @@ namespace ProjectGameInteraction
                 speedX = 0;
             }
 
+
             double playerX = Canvas.GetLeft(Player);
-            double canvasWidth = GameCanvas.ActualWidth;
-            double cameraCenterX = canvasWidth / 2;
+            double cameraCenterX = GAMEWINDOWWIDTH / 2;
             cameraOffsetX = playerX - cameraCenterX;
 
+            if (cameraOffsetX < 0)
+            {
+                cameraOffsetX = 0;
+            }
             // Adjust the canvas position to follow the player
             GameCanvas.RenderTransform = new TranslateTransform(-cameraOffsetX, 0);
+            // Adjust the timer position to follow the player
+            TimerLabel.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+
+
 
             // Jump
             if (jump && onGround)
