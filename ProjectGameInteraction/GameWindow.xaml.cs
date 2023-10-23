@@ -31,6 +31,8 @@ namespace ProjectGameInteraction
         
         private const int LEVELTIME = 300;
 
+        private double cameraOffsetX = 0; // Track the camera offset
+        private const double GAMEWINDOWWIDTH = 800;
 
         public GameWindow()
         {
@@ -116,11 +118,35 @@ namespace ProjectGameInteraction
         {
             // Movement
             if (moveLeft && !moveRight)
+            {
                 speedX = -speed;
+                
+                
+            }                
             else if (moveRight && !moveLeft)
+            {
                 speedX = speed;
+                
+            }
             else
+            {
                 speedX = 0;
+            }
+
+
+            double playerX = Canvas.GetLeft(Player);
+            double cameraCenterX = GAMEWINDOWWIDTH / 2;
+            cameraOffsetX = playerX - cameraCenterX;
+
+            if (cameraOffsetX < 0)
+            {
+                cameraOffsetX = 0;
+            }
+            // Adjust the canvas position to follow the player
+            GameCanvas.RenderTransform = new TranslateTransform(-cameraOffsetX, 0);
+            // Adjust the timer position to follow the player
+            TimerLabel.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+
 
 
             // Jump
@@ -140,7 +166,8 @@ namespace ProjectGameInteraction
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + speedX);
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
 
-            // Wallls so player can't run off screen left side at the start
+
+            // Walls so player can't run off screen left side at the start
             if (Canvas.GetLeft(Player) <= 0)
             {
                 
@@ -194,10 +221,9 @@ namespace ProjectGameInteraction
                 Canvas.SetLeft(Player, Canvas.GetLeft(platform1) + platform1.Width);
             }
 
-            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
-
+           
             // Enemy Collision (TEMP)
-            if (Canvas.GetBottom(Player) > Canvas.GetBottom(Enemy1) && playerRect.IntersectsWith(enemyRect))
+            if (lastCoordinate.y > Canvas.GetBottom(Enemy1) + Enemy1.Height && playerRect.IntersectsWith(enemyRect))
             {
                 speedY = 30;
                 Canvas.SetBottom(Enemy1, -100);
@@ -233,6 +259,8 @@ namespace ProjectGameInteraction
 
                 
             
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
+        
     }
 }
