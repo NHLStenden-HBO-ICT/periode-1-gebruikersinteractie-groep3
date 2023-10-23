@@ -11,5 +11,15 @@
         <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
+        <Image x:Name="Coins_Count_Symbol" Source="/Afbeeldingen/3885422.png" Margin="136,37,-112,-207" RenderTransformOrigin="1,0">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.1" ScaleY="0.1">
+                    </ScaleTransform>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock x:Name="coinCountTextBlock" FontSize="50" Width="100" Height="60" Canvas.Left="0" Canvas.Bottom="100"  TextAlignment="Center" RenderTransformOrigin="0.13,1.3" VerticalAlignment="Top" Margin="1739,70,0,0" HorizontalAlignment="Left"><Run Language="nl-nl" Text="0" /></TextBlock>
+
     </Grid>
 </Window>

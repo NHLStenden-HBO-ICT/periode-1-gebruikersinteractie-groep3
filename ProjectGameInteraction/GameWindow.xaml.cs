@@ -53,6 +53,8 @@ namespace ProjectGameInteraction
             TimerLabel.Content = levelTime;
         }
 
+        
+
         private int levelTime;
         private void LevelTick(object? sender, EventArgs e) 
         {
@@ -226,7 +228,7 @@ namespace ProjectGameInteraction
                 speedY = 30;
                 Canvas.SetBottom(Enemy1, -100);
                 GameCanvas.Children.Remove(Enemy1);
-                
+
             }
             else if (enemyRect.IntersectsWith(playerRect))
             {
@@ -240,6 +242,23 @@ namespace ProjectGameInteraction
                 Close();
             }
 
+
+            int coinCount = 0;
+            Rect coinRect = new (Canvas.GetLeft(Coin_Collect), Canvas.GetBottom(Coin_Collect), Coin_Collect.Width, Coin_Collect.Height);
+                
+                if (coinRect.IntersectsWith(playerRect))
+                {
+                    coinCount++;
+                    string Coincountstring = coinCount.ToString();
+                    TextBlock CoincountTextBlock = new TextBlock();
+                    coinCountTextBlock.Text = Coincountstring;
+                    Coin_Collect.Visibility = Visibility.Collapsed;
+                    
+
+                }
+
+                
+            
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
         
