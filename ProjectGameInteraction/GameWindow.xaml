@@ -7,36 +7,30 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800">
     <Grid>
-        <ScrollViewer x:Name="GameScroller" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
-            <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="1920" Height="430">
+        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="1920" Height="430">
 
-                <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
-                <Rectangle Name="Enemy1" Fill="Red" Width="50" Height="40" Canvas.Left="600" Canvas.Bottom="40"/>
+            <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
+            <Rectangle Name="Enemy1" Fill="Red" Width="50" Height="40" Canvas.Left="600" Canvas.Bottom="40"/>
 
-                <Rectangle Name="Ground" Fill="Green" Width="1920" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
-                <Rectangle Name="platform1" Fill="Black" Width="200" Height="40" Canvas.Left="300" Canvas.Bottom="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Name="Ground" Fill="Green" Width="1920" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
+            <Rectangle Name="platform1" Fill="Black" Width="200" Height="40" Canvas.Left="300" Canvas.Bottom="130" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-        <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="721" Canvas.Top="15" />
-        <!--coins counter-->
-        <Grid HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="450" Width="800">
-            <Image x:Name="Coins_Count_Symbol" Source="/Afbeeldingen/3885422.png" Margin="-614,-1,638,-169" RenderTransformOrigin="1,0">
+            <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="721" Canvas.Top="15" />
+            <!--coins counter-->
+            <Grid HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="450" Width="800">
+                <Image x:Name="Coins_Count_Symbol" Source="/Afbeeldingen/3885422.png" Margin="55,-1,686,374">
+                </Image>
+                <TextBlock x:Name="coinCountTextBlock" FontSize="40" Width="100" Height="60" Canvas.Left="0" Canvas.Bottom="100" Margin="91,7,609,393" TextAlignment="Center"><Run Language="nl-nl" Text="0"/></TextBlock>
+
+            </Grid>
+            <!--collectable coin-->
+            <Image x:Name="Coin_Collect" Source="/Afbeeldingen/3885422.png"  Canvas.Left="300" Canvas.Bottom="-269" Height="500" Width="500" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Visible" >
                 <Image.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleX="0.1" ScaleY="0.1">
-                        </ScaleTransform>
+                        <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <TextBlock x:Name="coinCountTextBlock" FontSize="40" Width="100" Height="60" Canvas.Left="0" Canvas.Bottom="100" Margin="91,7,609,393" TextAlignment="Center"><Run Language="nl-nl" Text="0"/></TextBlock>
-
-        </Grid>
-        <!--collectable coin-->
-        <Image x:Name="Coin_Collect" Source="/Afbeeldingen/3885422.png"  Canvas.Left="300" Canvas.Bottom="-269" Height="500" Width="500" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Visible" >
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-    </Canvas>
+        </Canvas>
+    </Grid>
 </Window>

@@ -146,7 +146,9 @@ namespace ProjectGameInteraction
             GameCanvas.RenderTransform = new TranslateTransform(-cameraOffsetX, 0);
             // Adjust the timer position to follow the player
             TimerLabel.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-
+            
+            Coins_Count_Symbol.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
 
 
             // Jump
@@ -179,6 +181,7 @@ namespace ProjectGameInteraction
                 enemySpeed *= -1 ;
                 
             }
+
 
 
             // Enemy sprite movement & Rect
@@ -221,7 +224,8 @@ namespace ProjectGameInteraction
                 Canvas.SetLeft(Player, Canvas.GetLeft(platform1) + platform1.Width);
             }
 
-           
+
+
             // Enemy Collision (TEMP)
             if (lastCoordinate.y > Canvas.GetBottom(Enemy1) + Enemy1.Height && playerRect.IntersectsWith(enemyRect))
             {
@@ -242,23 +246,20 @@ namespace ProjectGameInteraction
                 Close();
             }
 
-
             int coinCount = 0;
-            Rect coinRect = new (Canvas.GetLeft(Coin_Collect), Canvas.GetBottom(Coin_Collect), Coin_Collect.Width, Coin_Collect.Height);
-                
-                if (coinRect.IntersectsWith(playerRect))
-                {
-                    coinCount++;
-                    string Coincountstring = coinCount.ToString();
-                    TextBlock CoincountTextBlock = new TextBlock();
-                    coinCountTextBlock.Text = Coincountstring;
-                    Coin_Collect.Visibility = Visibility.Collapsed;
-                    
+            Rect coinRect = new(Canvas.GetLeft(Coin_Collect), Canvas.GetBottom(Coin_Collect), Coin_Collect.Width, Coin_Collect.Height);
 
-                }
+            if (coinRect.IntersectsWith(playerRect))
+            {
+                coinCount++;
+                string Coincountstring = coinCount.ToString();
+                TextBlock CoincountTextBlock = new TextBlock();
+                coinCountTextBlock.Text = Coincountstring;
+                Coin_Collect.Visibility = Visibility.Collapsed;
 
-                
-            
+
+            }
+
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
         
