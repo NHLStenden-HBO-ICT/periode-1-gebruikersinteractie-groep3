@@ -8,7 +8,7 @@
         Title="shop" Height="1080" Width="1920">
     <Grid>
         <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
-        <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
     </Grid>
