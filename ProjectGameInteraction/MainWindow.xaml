@@ -9,23 +9,23 @@
         Title="MainWindow" Height="1080" Width="1920">
     <Grid>
         <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
-        <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="PCClick" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="PCClick" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/alarmclock.png"/>
         </Button>
-        <Button  Width="180" Height="180" Margin="710,10,10,344" Background="Transparent" Click="SettingsClick" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Button  BorderThickness="0" Width="180" Height="180" Margin="710,10,10,344" Background="Transparent" Click="SettingsClick" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/settings.png" />
         </Button>
-        <Button Width="180" Height="180" Background="Transparent" Margin="10,344,710,10"  Click="ShopClick" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+        <Button BorderThickness="0" Width="180" Height="180" Background="Transparent" Margin="10,344,710,10"  Click="ShopClick" HorizontalAlignment="Left" VerticalAlignment="Bottom">
             <Image Source="pack://application:,,,/afbeeldingen/shoppingcart.png" />
         </Button>
-        <Button  Background="Transparent" Margin="0,187,0,0" Click="PlayClick" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="275" Height="250">
+        <Button  BorderThickness="0" Background="Transparent" Margin="0,187,0,0" Click="PlayClick" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="275" Height="250">
             <Image Source="pack://application:,,,/afbeeldingen/playbutton2.png" />
         </Button>
-        <Button Width="180" Height="180" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="ExitClick">
+        <Button  BorderThickness="0" Width="180" Height="180" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="ExitClick">
             <Image Source="pack://application:,,,/afbeeldingen/exitbutton.png" />
         </Button>
 
-        <Border  HorizontalAlignment="Center"  Background="#ff7200" CornerRadius="50" Margin="0,71,0,0" VerticalAlignment="Top" Width="940" Height="222">
+        <Border   BorderThickness="0" HorizontalAlignment="Center"  Background="#ff7200" CornerRadius="50" Margin="0,71,0,0" VerticalAlignment="Top" Width="940" Height="222">
             <Label Content="Jumping Jacks" FontFamily="Baloo Bhai 2" HorizontalAlignment="Center" VerticalAlignment="center" Foreground="white" FontSize="130"/>
         </Border>
 
