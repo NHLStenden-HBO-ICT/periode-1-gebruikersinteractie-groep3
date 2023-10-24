@@ -51,6 +51,10 @@ namespace ProjectGameInteraction
             levelTimer.Start();
             levelTime = LEVELTIME;
             TimerLabel.Content = levelTime;
+
+            // Gamewindow in full window 
+            WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
         }
 
         
