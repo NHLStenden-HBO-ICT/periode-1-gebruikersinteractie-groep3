@@ -6,7 +6,28 @@
         xmlns:local="clr-namespace:ProjectGameInteraction"
         mc:Ignorable="d"
         Title="settings" Height="1080" Width="1920">
-    <Grid>
+    <Window.Resources>
+        <Style x:Key="VolumeStyle" TargetType="{x:Type ProgressBar}">
+            <Setter Property="Foreground" Value="#FFB00606"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid x:Name="TemplateRoot">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
+                            <Rectangle x:Name="PART_Track"/>
+                            <Grid x:Name="PART_Indicator" ClipToBounds="True" HorizontalAlignment="Left">
+                                <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" RadiusX="5" RadiusY="3"/>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF363636">
         <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
         <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
@@ -22,5 +43,23 @@
         <Image Source="pack://application:,,,/afbeeldingen/helderheid.png" Width="112" Height="112" Margin="879,239,929,713"/>
         <Image Source="pack://application:,,,/afbeeldingen/music.png" Width="112" Height="112" Margin="879,428,929,524" />
         <Image Source="pack://application:,,,/afbeeldingen/volume.png" Width="112" Height="112" Margin="879,640,929,312"/>
+        <Border Background="Gray" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="3" Padding="2" Margin="1102,692,0,0">
+            <Border Background="Black" CornerRadius="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Vol:" Foreground="White" VerticalAlignment="Center" Margin="4 0"/>
+                    <ProgressBar x:Name="volumeBar"  Height="10" 
+                    Value="{Binding Volume}" 
+                    Width="100"
+                    MouseMove="MouseMove" 
+                    MouseDown="MouseDown"
+                    MouseUp="MouseUp" Style="{DynamicResource VolumeStyle}" Grid.Column="1"/>
+                </Grid>
+            </Border>
+        </Border>
+
     </Grid>
 </Window>
