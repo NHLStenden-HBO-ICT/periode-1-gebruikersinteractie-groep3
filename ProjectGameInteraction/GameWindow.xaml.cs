@@ -64,9 +64,9 @@ namespace ProjectGameInteraction
         {
             if (levelTime == 0)
             {
-                MainWindow window = new();
+                GameOverScherm GOwindow = new();
+                GOwindow.Show();
                 Close();
-                window.Show();
                 levelTimer.Stop();
             } else
             {
@@ -243,10 +243,10 @@ namespace ProjectGameInteraction
                 // Enemy turns around (for collision with walls) (is temporary until walls added)
                 enemySpeed *= -1;
 
-                MessageBox.Show("You died!");
+               
                 gameTimer.Stop();
-                MainWindow window = new();
-                window.Show();
+                GameOverScherm GOwindow = new();
+                GOwindow.Show();
                 Close();
             }
 
