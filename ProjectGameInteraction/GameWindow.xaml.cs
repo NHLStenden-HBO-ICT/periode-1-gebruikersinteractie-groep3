@@ -249,6 +249,15 @@ namespace ProjectGameInteraction
                 GOwindow.Show();
                 Close();
             }
+            
+            // Player out of bounds
+            if (Canvas.GetBottom(Player) < -100)
+            {
+                gameTimer.Stop();
+                GameOverScherm GOwindow = new();
+                GOwindow.Show();
+                Close();
+            }
 
             int coinCount = 0;
             Rect coinRect = new(Canvas.GetLeft(Coin_Collect), Canvas.GetBottom(Coin_Collect), Coin_Collect.Width, Coin_Collect.Height);
