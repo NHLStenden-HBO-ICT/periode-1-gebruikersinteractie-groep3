@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800">
     <Grid>
-        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="1920" Height="430">
+        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="1920" Height="Auto">
 
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
             <Rectangle Name="Enemy1" Fill="Red" Width="50" Height="40" Canvas.Left="600" Canvas.Bottom="40"/>
