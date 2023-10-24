@@ -36,9 +36,11 @@ namespace ProjectGameInteraction
 
         public GameWindow()
         {
+            
             InitializeComponent();
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
+            
 
             // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -55,10 +57,12 @@ namespace ProjectGameInteraction
             // Gamewindow in full window 
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
+
+            
         }
 
-        
 
+        
         private int levelTime;
         private void LevelTick(object? sender, EventArgs e) 
         {
