@@ -35,8 +35,6 @@ namespace ProjectGameInteraction
 
         private void HoofdmenuClick(object sender, RoutedEventArgs e)
         {
-            MainWindow mainwindow = new MainWindow();
-            mainwindow.Show();
             Close();
         }
     }
