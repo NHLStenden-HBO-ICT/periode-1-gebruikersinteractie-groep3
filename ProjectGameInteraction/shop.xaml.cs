@@ -28,9 +28,6 @@ namespace ProjectGameInteraction
 
         private void ReturnClick(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
-
             Close();
         }
     }

@@ -18,46 +18,52 @@ namespace ProjectGameInteraction
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IDisposable
     {
+        void IDisposable.Dispose() { }
+
+        private MediaPlayer mediaPlayer = new MediaPlayer();
+
         public MainWindow()
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
+            mediaPlayer.Open(new Uri(string.Format("{0}\\music2.mp3", AppDomain.CurrentDomain.BaseDirectory)));
+            mediaPlayer.MediaEnded += new EventHandler(Media_Ended);
+            mediaPlayer.Play();
         }
+
+        private void Media_Ended(object? sender, EventArgs e)
+        {
+            mediaPlayer.Position = TimeSpan.Zero;
+            throw new NotImplementedException();
+        }
+
 
         // PC -> Parental Control
         private void PCClick(object sender, RoutedEventArgs e)
         {
             parentalcontrolmenu pc = new parentalcontrolmenu();
             pc.Show();
-
-            Close();
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
             settings set = new settings();
             set.Show();
-
-            Close();
         }
 
         private void ShopClick(object sender, RoutedEventArgs e)
         {
             shop sh = new shop();
             sh.Show();
-
-            Close();
         }
 
         private void PlayClick(object sender, RoutedEventArgs e)
         {
             levelmenu lm = new levelmenu();
             lm.Show();
-
-            Close();
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)
