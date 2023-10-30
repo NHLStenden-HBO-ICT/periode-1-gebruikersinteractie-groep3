@@ -88,51 +88,8 @@ namespace ProjectGameInteraction
              */
             public int IntersectsWithDirectional(Rectangle player, (double x, double y) lastCoordinate)
             {
-                // x -> left
-                // y -> bottom
                 Rect playerRect = new(Canvas.GetLeft(player), Canvas.GetBottom(player), player.Width, player.Height);
                 if (Element == null || !platform.IntersectsWith(playerRect)) return 0;
-                //System.Windows.Vector playerDirection = new(lastCoordinate.x - player.Left, lastCoordinate.y - player.Bottom);
-                //Func<double, double, double, double, double> calcSlope = (x1, y1, x2, y2) => (y1 - y2) / (x1 - x2);
-                //double playerDirection = calcSlope(player.Left, player.Bottom, lastCoordinate.x, lastCoordinate.y);
-                //if (calcSlope(player.Bottom, player.Right, platform.Top, platform.Left) <= playerDirection || // top left approach
-                //    calcSlope(player.Bottom, player.Left, platform.Top, platform.Right) >= playerDirection) // top right approach
-                //{
-                //    MessageBox.Show("Top");
-                //    return 1;
-                //} else 
-                //if (calcSlope(player.Top, player.Right, platform.Bottom, platform.Left) <= playerDirection ||
-                //    calcSlope(player.Top, player.Left, platform.Bottom, platform.Right) >= playerDirection)
-                //{
-                //    MessageBox.Show("Bottom");
-                //    return 2;
-                //} else 
-                //if (calcSlope(player.Bottom, player.Right, platform.Top, platform.Left) >= playerDirection ||
-                //    calcSlope(player.Top, player.Right, platform.Bottom, platform.Left) <= playerDirection)
-                //{
-                //    MessageBox.Show("Left");
-                //    return 3; 
-                //} else 
-                //if (calcSlope(player.Bottom, player.Left, platform.Top, platform.Right) >= playerDirection ||
-                //    calcSlope(player.Top, player.Left, platform.Bottom, platform.Right) <= playerDirection)
-                //{
-                //    MessageBox.Show("Right");
-                //    return 4; 
-                //}
-
-
-                //string message = Vector.AngleBetween(playerDirection, new(platform.Left - player.Right, platform.Top - player.Bottom)).ToString()
-                //    + " "
-                //    + Vector.AngleBetween(new(platform.Right - player.Left, platform.Top - player.Bottom), playerDirection).ToString();
-                //MessageBox.Show(message + " " + player.Bottom + "," + lastCoordinate.y);
-
-                // Not Working
-                /*if (lastCoordinate.y > player.Bottom &&
-                    Vector.AngleBetween(playerDirection, new(platform.Left - player.Right, platform.Top - player.Bottom)) < 0 &&
-                    Vector.AngleBetween(new(platform.Right - player.Left, platform.Top - player.Bottom), playerDirection) < 0)
-                {
-                    MessageBox.Show(player.Bottom + "," + lastCoordinate.y + " Top");
-                }*/
                 if (Canvas.GetBottom(player) > Canvas.GetBottom(Element) && (playerRect.IntersectsWith(platform)))
                     return 1;
                 else if (lastCoordinate.y <= Canvas.GetBottom(Element) && (playerRect.IntersectsWith(platform)))
