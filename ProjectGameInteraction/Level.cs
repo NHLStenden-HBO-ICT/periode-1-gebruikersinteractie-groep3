@@ -115,7 +115,7 @@ namespace ProjectGameInteraction
             // Properties
             public float X { get; private set; } // Left
             public float Y { get; private set; } // Bottom
-            public double Speed { get; private set; }
+            public double Speed { get; set; }
             public Rectangle? Element { get; internal set; }
 
             // Constructors

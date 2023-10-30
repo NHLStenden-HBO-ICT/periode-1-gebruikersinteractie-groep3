@@ -38,7 +38,7 @@ namespace ProjectGameInteraction
         private Level level = new(
             new() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
             new() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
-            new() { new(1000f, 40, 3f) }
+            new() { new(600f, 40, 3f), new(1000f, 40, 3f) }
         );
         private int collectedCoins = 0;
 
@@ -235,18 +235,18 @@ namespace ProjectGameInteraction
             foreach (var enemy in level.Enemies)
             {
                 // check if enemy element exists
-                if (enemy.Element == null) break;
+                if (enemy.Element == null) continue;
 
                 Rect enemyRect = new(Canvas.GetLeft(enemy.Element), Canvas.GetBottom(enemy.Element), Enemy.ENEMYWIDTH, Enemy.ENEMYHEIGHT);
                 if (Canvas.GetLeft(enemy.Element) <= 0)
-                    enemySpeed *= -1;
+                    enemy.Speed *= -1;
 
 
                 // Enemy movement
                 Canvas.SetLeft(enemy.Element, Canvas.GetLeft(enemy.Element) - enemy.Speed);
 
                 // Enemy Collision
-                if (!enemyRect.IntersectsWith(playerRect)) break; // no collision
+                if (!enemyRect.IntersectsWith(playerRect)) continue; // no collision
 
                 if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + Enemy.ENEMYHEIGHT) // player jumps on top of enemy
                 {
@@ -265,7 +265,7 @@ namespace ProjectGameInteraction
                     Close();
                 }
             }
-            // remove killed enemies from level
+            // Remove killed enemies from level
             foreach (var enemy in enemiesToRemove)
             {
                 level.Enemies.Remove(enemy);
