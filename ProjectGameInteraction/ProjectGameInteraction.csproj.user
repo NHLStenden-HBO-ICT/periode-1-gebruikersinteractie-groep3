@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="GameOverScherm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="GameWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -11,14 +14,23 @@
     <Compile Update="parentalcontrolmenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ParentalControlTimerSet.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="shop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SplashScreen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="GameOverScherm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="GameWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -28,10 +40,16 @@
     <Page Update="parentalcontrolmenu.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ParentalControlTimerSet.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="settings.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="shop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SplashScreen.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -8,10 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Afbeeldingen\3885422.png" />
     <None Remove="Afbeeldingen\alarmclock.png" />
     <None Remove="Afbeeldingen\citybackground.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
     <None Remove="Afbeeldingen\helderheid.png" />
+    <None Remove="Afbeeldingen\logo klant.png" />
     <None Remove="Afbeeldingen\music.png" />
     <None Remove="Afbeeldingen\playbutton.png" />
     <None Remove="Afbeeldingen\playbutton2.png" />
@@ -22,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Afbeeldingen\3885422.png" />
     <Resource Include="Afbeeldingen\alarmclock.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -55,6 +58,22 @@
     <Resource Include="Afbeeldingen\volume.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Afbeeldingen\logo klant.png" />
   </ItemGroup>
 
 </Project>

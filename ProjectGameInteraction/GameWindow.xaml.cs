@@ -24,8 +24,11 @@ namespace ProjectGameInteraction
         DispatcherTimer gameTimer = new DispatcherTimer();
         DispatcherTimer levelTimer = new DispatcherTimer();
 
-        private bool moveLeft, moveRight, jump, onGround = true;
+        private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
+        private (double x, double y) lastCoordinate;
+        private double enemySpeed = 3;
+        
         private const int LEVELTIME = 300;
 
         private void PauseButtonClick(object sender, RoutedEventArgs e)
@@ -46,11 +49,16 @@ namespace ProjectGameInteraction
             gameTimer.Start();
             levelTimer.Start();
         }
+        private double cameraOffsetX = 0; // Track the camera offset
+        private const double GAMEWINDOWWIDTH = 800;
 
         public GameWindow()
         {
+            
             InitializeComponent();
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
+            
 
             // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -63,18 +71,26 @@ namespace ProjectGameInteraction
             levelTimer.Start();
             levelTime = LEVELTIME;
             TimerLabel.Content = levelTime;
+
+            // Gamewindow in full window 
+            WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
+
+            
         }
 
    
 
+
+        
         private int levelTime;
         private void LevelTick(object? sender, EventArgs e) 
         {
             if (levelTime == 0)
             {
-                MainWindow window = new();
+                GameOverScherm GOwindow = new();
+                GOwindow.Show();
                 Close();
-                window.Show();
                 levelTimer.Stop();
             } else
             {
@@ -93,12 +109,10 @@ namespace ProjectGameInteraction
                 case Key.Right:
                 case Key.D:
                     moveRight = true;
-                    speedX = speed;
                     break;
                 case Key.Left:
                 case Key.A:
                     moveLeft = true;
-                    speedX = -speed;
                     break;
                 case Key.Up:
                 case Key.W:
@@ -114,13 +128,11 @@ namespace ProjectGameInteraction
             {
                 case Key.Right:
                 case Key.D:
-                    moveLeft = false;
-                    speedX = 0;
+                    moveRight = false;
                     break;
                 case Key.Left:
                 case Key.A:
-                    moveRight = false;
-                    speedX = 0;
+                    moveLeft = false;
                     break;
                 case Key.Up:
                 case Key.W:
@@ -132,6 +144,41 @@ namespace ProjectGameInteraction
 
         private void GameTick(object? sender, EventArgs e)
         {
+            // Movement
+            if (moveLeft && !moveRight)
+            {
+                speedX = -speed;
+                
+                
+            }                
+            else if (moveRight && !moveLeft)
+            {
+                speedX = speed;
+                
+            }
+            else
+            {
+                speedX = 0;
+            }
+
+
+            double playerX = Canvas.GetLeft(Player);
+            double cameraCenterX = GAMEWINDOWWIDTH / 2;
+            cameraOffsetX = playerX - cameraCenterX;
+
+            if (cameraOffsetX < 0)
+            {
+                cameraOffsetX = 0;
+            }
+            // Adjust the canvas position to follow the player
+            GameCanvas.RenderTransform = new TranslateTransform(-cameraOffsetX, 0);
+            // Adjust the timer position to follow the player
+            TimerLabel.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            
+            Coins_Count_Symbol.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+
+
             // Jump
             if (jump && onGround)
             {
@@ -149,6 +196,26 @@ namespace ProjectGameInteraction
             Canvas.SetLeft(Player, Canvas.GetLeft(Player) + speedX);
             Canvas.SetBottom(Player, Canvas.GetBottom(Player) + speedY);
 
+
+            // Walls so player can't run off screen left side at the start
+            if (Canvas.GetLeft(Player) <= 0)
+            {
+                
+                Canvas.SetLeft(Player, 0);
+            }
+
+            if (Canvas.GetLeft(Enemy1) <= 0)
+            {
+                enemySpeed *= -1 ;
+                
+            }
+
+
+
+            // Enemy sprite movement & Rect
+            Canvas.SetLeft(Enemy1, Canvas.GetLeft(Enemy1) - enemySpeed);
+            Rect enemyRect = new(Canvas.GetLeft(Enemy1), Canvas.GetBottom(Enemy1), Enemy1.Width, Enemy1.Height);
+
             // Ground Collision
             Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
             Rect groundRect = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
@@ -159,7 +226,7 @@ namespace ProjectGameInteraction
                 onGround = true;
             }
 
-
+            // Platform Collision
             Rect platformRect1 = new(Canvas.GetLeft(platform1), Canvas.GetBottom(platform1), platform1.Width, platform1.Height);
 
             if (Canvas.GetBottom(Player) > Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
@@ -168,18 +235,70 @@ namespace ProjectGameInteraction
                 Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
                 onGround = true;
             }
-            else if (((Canvas.GetLeft(platform1) == Canvas.GetLeft(Player)+Player.Width) || (Canvas.GetLeft(platform1) + platform1.Width == Canvas.GetLeft(Player))) && playerRect.IntersectsWith(platformRect1))
-            {
-                speedY = 0;
-                speedX = 0;
-                onGround = false;
-            }
-            else if ((playerRect.IntersectsWith(platformRect1)))
+            else if (lastCoordinate.y <= Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
             {
                 speedY = 0;
                 Canvas.SetBottom(Player, Canvas.GetBottom(platform1) - Player.Height);
                 onGround = false;
             }
+            else if (lastCoordinate.x <= Canvas.GetLeft(platform1) && (Canvas.GetLeft(platform1) <= Canvas.GetLeft(Player) + Player.Width) && playerRect.IntersectsWith(platformRect1))
+            {
+                speedX = 0;
+                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) - Player.Width);
+            }
+            else if (lastCoordinate.x >= Canvas.GetLeft(platform1) + platform1.Width && (Canvas.GetLeft(platform1) + platform1.Width >= Canvas.GetLeft(Player)) && playerRect.IntersectsWith(platformRect1))
+            {
+                speedX = 0;
+                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) + platform1.Width);
+            }
+
+
+
+            // Enemy Collision (TEMP)
+            if (lastCoordinate.y > Canvas.GetBottom(Enemy1) + Enemy1.Height && playerRect.IntersectsWith(enemyRect))
+            {
+                speedY = 30;
+                Canvas.SetBottom(Enemy1, -100);
+                GameCanvas.Children.Remove(Enemy1);
+
+            }
+            else if (enemyRect.IntersectsWith(playerRect))
+            {
+                // Enemy turns around (for collision with walls) (is temporary until walls added)
+                enemySpeed *= -1;
+
+               
+                gameTimer.Stop();
+                GameOverScherm GOwindow = new();
+                GOwindow.Show();
+                Close();
+            }
+            
+            // Player out of bounds
+            if (Canvas.GetBottom(Player) < -100)
+            {
+                gameTimer.Stop();
+                GameOverScherm GOwindow = new();
+                GOwindow.Show();
+                Close();
+            }
+
+            int coinCount = 0;
+            Rect coinRect = new(Canvas.GetLeft(Coin_Collect), Canvas.GetBottom(Coin_Collect), Coin_Collect.Width, Coin_Collect.Height);
+
+            if (coinRect.IntersectsWith(playerRect))
+            {
+                coinCount++;
+                string Coincountstring = coinCount.ToString();
+                TextBlock CoincountTextBlock = new TextBlock();
+                coinCountTextBlock.Text = Coincountstring;
+                Coin_Collect.Visibility = Visibility.Collapsed;
+
+
+            }
+
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
+        
     }
 }

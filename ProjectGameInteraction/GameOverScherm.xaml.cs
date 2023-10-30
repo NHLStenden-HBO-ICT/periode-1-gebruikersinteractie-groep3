@@ -15,27 +15,26 @@ using System.Windows.Shapes;
 namespace ProjectGameInteraction
 {
     /// <summary>
-    /// Interaction logic for levelmenu.xaml
+    /// Interaction logic for GameOverScherm.xaml
     /// </summary>
-    public partial class levelmenu : Window
+    public partial class GameOverScherm : Window
     {
-        public levelmenu()
+        public GameOverScherm()
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
         }
 
-        private void ReturnClick(object sender, RoutedEventArgs e)
+        private void SpeelOpnieuwClick(object sender, RoutedEventArgs e)
         {
+            GameWindow window = new GameWindow();
+            window.Show();
             Close();
         }
 
-        private void SpeelNu(object sender, RoutedEventArgs e)
+        private void HoofdmenuClick(object sender, RoutedEventArgs e)
         {
-            GameWindow gw = new GameWindow();
-            gw.Show();
-
             Close();
         }
     }
