@@ -34,6 +34,13 @@ namespace ProjectGameInteraction
         private double cameraOffsetX = 0; // Track the camera offset
         private const double GAMEWINDOWWIDTH = 800;
 
+        private Level level = new(
+            new() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
+            new() { new(500f, 130f, 200f) },
+            new()
+        );
+        private int collectedCoins = 0;
+
         public GameWindow()
         {
             InitializeComponent();
@@ -55,6 +62,7 @@ namespace ProjectGameInteraction
             // Gamewindow in full window 
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
+            level.Draw(GameCanvas);
         }
 
         
@@ -203,31 +211,32 @@ namespace ProjectGameInteraction
             }
 
             // Platform Collision
-            Rect platformRect1 = new(Canvas.GetLeft(platform1), Canvas.GetBottom(platform1), platform1.Width, platform1.Height);
-
-            if (Canvas.GetBottom(Player) > Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
+            foreach (var platform in level.Platforms)
             {
-                speedY = 0;
-                Canvas.SetBottom(Player, Canvas.GetBottom(platform1) + platform1.Height);
-                onGround = true;
+                switch(platform.IntersectsWithDirectional(Player, lastCoordinate))
+                {
+                    case 1:
+                        speedY = 0;
+                        Canvas.SetBottom(Player, platform.Y + Level.Platform.PLATFORMHEIGHT);
+                        onGround = true;
+                        break;
+                    case 2:
+                        speedY = 0;
+                        Canvas.SetBottom(Player, platform.Y - Player.Height);
+                        onGround = false;
+                        break;
+                    case 3:
+                        speedX = 0;
+                        Canvas.SetLeft(Player, platform.X - Player.Width);
+                        break;
+                    case 4:
+                        speedX = 0;
+                        Canvas.SetLeft(Player, platform.X + platform.Length);
+                        break;
+                    default:
+                        break;
+                }
             }
-            else if (lastCoordinate.y <= Canvas.GetBottom(platform1) && (playerRect.IntersectsWith(platformRect1)))
-            {
-                speedY = 0;
-                Canvas.SetBottom(Player, Canvas.GetBottom(platform1) - Player.Height);
-                onGround = false;
-            }
-            else if (lastCoordinate.x <= Canvas.GetLeft(platform1) && (Canvas.GetLeft(platform1) <= Canvas.GetLeft(Player) + Player.Width) && playerRect.IntersectsWith(platformRect1))
-            {
-                speedX = 0;
-                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) - Player.Width);
-            }
-            else if (lastCoordinate.x >= Canvas.GetLeft(platform1) + platform1.Width && (Canvas.GetLeft(platform1) + platform1.Width >= Canvas.GetLeft(Player)) && playerRect.IntersectsWith(platformRect1))
-            {
-                speedX = 0;
-                Canvas.SetLeft(Player, Canvas.GetLeft(platform1) + platform1.Width);
-            }
-
 
 
             // Enemy Collision (TEMP)
@@ -259,21 +268,11 @@ namespace ProjectGameInteraction
                 Close();
             }
 
-            int coinCount = 0;
-            Rect coinRect = new(Canvas.GetLeft(Coin_Collect), Canvas.GetBottom(Coin_Collect), Coin_Collect.Width, Coin_Collect.Height);
 
-            if (coinRect.IntersectsWith(playerRect))
-            {
-                coinCount++;
-                string Coincountstring = coinCount.ToString();
-                TextBlock CoincountTextBlock = new TextBlock();
-                coinCountTextBlock.Text = Coincountstring;
-                Coin_Collect.Visibility = Visibility.Collapsed;
+            collectedCoins += level.CheckCoinCollision(GameCanvas, Player);
+            coinCountTextBlock.Text = collectedCoins.ToString();
 
-
-            }
-
-            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
+            lastCoordinate = (playerRect.Left, playerRect.Bottom);
         }
         
     }
