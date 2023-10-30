@@ -11,7 +11,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static ProjectGameInteraction.Level;
 
 namespace ProjectGameInteraction
 {
@@ -26,8 +25,8 @@ namespace ProjectGameInteraction
             private Rect coin;
 
             // Properties
-            public float X { get; private set; }
-            public float Y { get; private set; }
+            public float X { get; private set; } // Left
+            public float Y { get; private set; } // Bottom
             public UIElement? Element { get; internal set; }
 
             // Constructors
@@ -57,8 +56,8 @@ namespace ProjectGameInteraction
             private Rect platform;
 
             // Properties
-            public float X { get; private set; }
-            public float Y { get; private set; }
+            public float X { get; private set; } // Left
+            public float Y { get; private set; } // Bottom
             public float Length { get; private set; }
             public Rectangle? Element { get; internal set; }
 
@@ -104,9 +103,36 @@ namespace ProjectGameInteraction
             }
         }
 
+        public class Enemy
+        {
+            // Constants
+            public const int ENEMYHEIGHT = 50;
+            public const int ENEMYWIDTH = 40;
+
+            // Variables
+            private Rect enemy;
+
+            // Properties
+            public float X { get; private set; } // Left
+            public float Y { get; private set; } // Bottom
+            public double Speed { get; private set; }
+            public Rectangle? Element { get; internal set; }
+
+            // Constructors
+            public Enemy(float x, float y, float speed) : this(x, y, speed, null) { }
+            public Enemy(float x, float y, float speed, Rectangle? element)
+            {
+                X = x;
+                Y = y;
+                Speed = speed;
+                Element = element;
+                enemy = new(X, Y, ENEMYHEIGHT, ENEMYWIDTH);
+            }
+        }
+
         public List<Coin> Coins { get; private set; }
         public List<Platform> Platforms { get; private set; }
-        public List<(float x, float y, UIElement? element)> Enemies { get; private set; }
+        public List<Enemy> Enemies { get; private set; }
 
         public Level() : this(new(), new(), new())
         {
@@ -115,7 +141,7 @@ namespace ProjectGameInteraction
         public Level(
             List<Coin> coins, 
             List<Platform> platforms,
-            List<(float x, float y, UIElement? element)> enemies
+            List<Enemy> enemies
             )
         {
             Coins = coins;
@@ -147,7 +173,6 @@ namespace ProjectGameInteraction
         // SHOULD ONLY BE CALLED ON LEVEL START
         public void Draw(Canvas canvas)
         {
-            List<UIElement> coinElements = new();
             foreach ( var coin in Coins )
             {
                 var coinElement = new Ellipse()
@@ -163,7 +188,6 @@ namespace ProjectGameInteraction
                 Canvas.SetLeft(coinElement, coin.X);
                 canvas.Children.Add(coinElement);
                 coin.Element = coinElement;
-                coinElements.Add(coinElement);
             }
 
 
@@ -185,13 +209,14 @@ namespace ProjectGameInteraction
             {
                 var enemyElement = new Rectangle()
                 {
-                    Height = 50,
-                    Width = 40,
-                    Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255))
+                    Height = Enemy.ENEMYHEIGHT,
+                    Width = Enemy.ENEMYWIDTH,
+                    Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0))
                 };
-                Canvas.SetBottom(enemyElement, enemy.y);
-                Canvas.SetLeft(enemyElement, enemy.x);
+                Canvas.SetBottom(enemyElement, enemy.Y);
+                Canvas.SetLeft(enemyElement, enemy.X);
                 canvas.Children.Add(enemyElement);
+                enemy.Element = enemyElement;
             }
         }
     }

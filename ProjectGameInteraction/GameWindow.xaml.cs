@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using System.Windows.Threading;
+using static ProjectGameInteraction.Level;
 
 namespace ProjectGameInteraction
 {
@@ -36,8 +37,8 @@ namespace ProjectGameInteraction
 
         private Level level = new(
             new() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
-            new() { new(500f, 130f, 200f) },
-            new()
+            new() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
+            new() { new(1000f, 40, 3f) }
         );
         private int collectedCoins = 0;
 
@@ -188,17 +189,9 @@ namespace ProjectGameInteraction
                 Canvas.SetLeft(Player, 0);
             }
 
-            if (Canvas.GetLeft(Enemy1) <= 0)
-            {
-                enemySpeed *= -1 ;
-                
-            }
 
 
-
-            // Enemy sprite movement & Rect
-            Canvas.SetLeft(Enemy1, Canvas.GetLeft(Enemy1) - enemySpeed);
-            Rect enemyRect = new(Canvas.GetLeft(Enemy1), Canvas.GetBottom(Enemy1), Enemy1.Width, Enemy1.Height);
+            
 
             // Ground Collision
             Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
@@ -238,27 +231,48 @@ namespace ProjectGameInteraction
                 }
             }
 
-
-            // Enemy Collision (TEMP)
-            if (lastCoordinate.y > Canvas.GetBottom(Enemy1) + Enemy1.Height && playerRect.IntersectsWith(enemyRect))
+            List<Enemy> enemiesToRemove = new();
+            foreach (var enemy in level.Enemies)
             {
-                speedY = 30;
-                Canvas.SetBottom(Enemy1, -100);
-                GameCanvas.Children.Remove(Enemy1);
+                // check if enemy element exists
+                if (enemy.Element == null) break;
 
+                Rect enemyRect = new(Canvas.GetLeft(enemy.Element), Canvas.GetBottom(enemy.Element), Enemy.ENEMYWIDTH, Enemy.ENEMYHEIGHT);
+                if (Canvas.GetLeft(enemy.Element) <= 0)
+                    enemySpeed *= -1;
+
+
+                // Enemy movement
+                Canvas.SetLeft(enemy.Element, Canvas.GetLeft(enemy.Element) - enemy.Speed);
+
+                // Enemy Collision
+                if (!enemyRect.IntersectsWith(playerRect)) break; // no collision
+
+                if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + Enemy.ENEMYHEIGHT) // player jumps on top of enemy
+                {
+                    speedY = 30;
+                    enemiesToRemove.Add(enemy);
+
+                }
+                else
+                {
+                    // Enemy turns around (for collision with walls) (is temporary until walls added)
+                    enemySpeed *= -1;
+
+                    gameTimer.Stop();
+                    GameOverScherm GOwindow = new();
+                    GOwindow.Show();
+                    Close();
+                }
             }
-            else if (enemyRect.IntersectsWith(playerRect))
+            // remove killed enemies from level
+            foreach (var enemy in enemiesToRemove)
             {
-                // Enemy turns around (for collision with walls) (is temporary until walls added)
-                enemySpeed *= -1;
-
-               
-                gameTimer.Stop();
-                GameOverScherm GOwindow = new();
-                GOwindow.Show();
-                Close();
+                level.Enemies.Remove(enemy);
+                GameCanvas.Children.Remove(enemy.Element);
             }
-            
+
+
             // Player out of bounds
             if (Canvas.GetBottom(Player) < -100)
             {
@@ -272,7 +286,7 @@ namespace ProjectGameInteraction
             collectedCoins += level.CheckCoinCollision(GameCanvas, Player);
             coinCountTextBlock.Text = collectedCoins.ToString();
 
-            lastCoordinate = (playerRect.Left, playerRect.Bottom);
+            lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
         }
         
     }
