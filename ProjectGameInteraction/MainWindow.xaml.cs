@@ -32,12 +32,20 @@ namespace ProjectGameInteraction
             mediaPlayer.Open(new Uri(string.Format("{0}\\music2.mp3", AppDomain.CurrentDomain.BaseDirectory)));
             mediaPlayer.MediaEnded += new EventHandler(Media_Ended);
             mediaPlayer.Play();
+
+            if ((bool)Properties.Settings.Default.setting == true)
+            {
+                mediaPlayer.Play();
+            }
         }
 
-        private void Media_Ended(object? sender, EventArgs e)
+        private void Media_Ended(object sender, EventArgs e)
         {
-            mediaPlayer.Position = TimeSpan.Zero;
-            throw new NotImplementedException();
+            if ((bool)Properties.Settings.Default.setting == true)
+            {
+                mediaPlayer.Position = TimeSpan.Zero;
+                mediaPlayer.Play();
+            }
         }
 
 
@@ -50,8 +58,36 @@ namespace ProjectGameInteraction
 
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
-            settings set = new settings();
-            set.Show();
+            
+            settings ws = new settings();
+            {
+                Owner = this.Parent as Window;
+                ShowInTaskbar = false;
+            }
+            ws.ShowDialog();
+            
+            if ((bool)Properties.Settings.Default.setting == false)
+            {
+                mediaPlayer.Stop();
+            }
+            else
+            {
+                mediaPlayer.Position = TimeSpan.Zero;
+                mediaPlayer.Play();
+            }
+            
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if ((bool)Properties.Settings.Default.setting == false)
+            {
+                mediaPlayer.Stop();
+            }
+            else
+            {
+                mediaPlayer.Position = TimeSpan.Zero;
+                mediaPlayer.Play();
+            }
         }
 
         private void ShopClick(object sender, RoutedEventArgs e)
@@ -70,7 +106,5 @@ namespace ProjectGameInteraction
         {
             Application.Current.Shutdown();
         }
-
-        
     }
 }
