@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ProjectGameInteraction
 {
@@ -19,21 +20,42 @@ namespace ProjectGameInteraction
     /// </summary>
     public partial class SplashScreen : Window
     {
+        DispatcherTimer SplashTimer = new DispatcherTimer();
+        private const int SPLASHTIME = 1;
         public SplashScreen()
+
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
 
+            // level timer
+            SplashTimer.Interval = TimeSpan.FromSeconds(SPLASHTIME);
+            SplashTimer.Tick += SplashTick;
+            SplashTimer.Start();
+            splashTime = SPLASHTIME;
+
+
         }
 
-        private void whenButtonClicked(object sender, RoutedEventArgs e)
+        private int splashTime = 0;
+        private void SplashTick(object? sender, EventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
+            if (splashTime == 0)
+            {
+                MainWindow MainWindow = new();
+                MainWindow.Show();
+                Close();
+                SplashTimer.Stop();
+            }
+            else
+                splashTime--;
 
-            Close();
+
+
+
         }
-
     }
+
 }
+
