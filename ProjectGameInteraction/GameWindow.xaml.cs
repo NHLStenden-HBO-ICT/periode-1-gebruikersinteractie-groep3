@@ -30,10 +30,21 @@ namespace ProjectGameInteraction
 
         private void PauseButtonClick(object sender, RoutedEventArgs e)
         {
-            gameTimer.Interval = TimeSpan.FromMilliseconds(16);
-            gameTimer.Tick += GameTick;
+            
             gameTimer.Stop();
             levelTimer.Stop();
+
+           
+
+        }
+
+
+     private void ResumeButtonClick(object sender, RoutedEventArgs e)
+        {
+          
+
+            gameTimer.Start();
+            levelTimer.Start();
         }
 
         public GameWindow()
@@ -53,6 +64,8 @@ namespace ProjectGameInteraction
             levelTime = LEVELTIME;
             TimerLabel.Content = levelTime;
         }
+
+   
 
         private int levelTime;
         private void LevelTick(object? sender, EventArgs e) 
