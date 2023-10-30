@@ -13,6 +13,7 @@
     <None Remove="Afbeeldingen\citybackground.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
     <None Remove="Afbeeldingen\helderheid.png" />
+    <None Remove="Afbeeldingen\logo klant.png" />
     <None Remove="Afbeeldingen\music.png" />
     <None Remove="Afbeeldingen\playbutton.png" />
     <None Remove="Afbeeldingen\playbutton2.png" />
@@ -72,6 +73,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Afbeeldingen\logo klant.png" />
   </ItemGroup>
 
 </Project>
