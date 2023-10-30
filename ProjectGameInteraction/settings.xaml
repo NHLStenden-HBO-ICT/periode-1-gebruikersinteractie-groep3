@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectGameInteraction"
         mc:Ignorable="d"
-        Title="settings" Height="1080" Width="1920">
+        Title="settings" Height="1080" Width="1920" Loaded="Window_Loaded">
     <Window.Resources>
         <Style x:Key="VolumeStyle" TargetType="{x:Type ProgressBar}">
             <Setter Property="Foreground" Value="#FFB00606"/>
@@ -43,7 +43,7 @@
         <Image Source="pack://application:,,,/afbeeldingen/helderheid.png" Width="112" Height="112" Margin="879,239,929,713"/>
         <Image Source="pack://application:,,,/afbeeldingen/music.png" Width="112" Height="112" Margin="879,428,929,524" />
         <Image Source="pack://application:,,,/afbeeldingen/volume.png" Width="112" Height="112" Margin="879,640,929,312"/>
-        <Border Background="Gray" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="3" Padding="2" Margin="1102,692,0,0">
+        <Border Background="Gray" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="3" Padding="2" Margin="935,703,0,0">
             <Border Background="Black" CornerRadius="3">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -53,13 +53,19 @@
                     <TextBlock Text="Vol:" Foreground="White" VerticalAlignment="Center" Margin="4 0"/>
                     <ProgressBar x:Name="volumeBar"  Height="10" 
                     Value="{Binding Volume}" 
-                    Width="100"
+                    Width="200"
                     MouseMove="MouseMove" 
                     MouseDown="MouseDown"
                     MouseUp="MouseUp" Style="{DynamicResource VolumeStyle}" Grid.Column="1"/>
                 </Grid>
             </Border>
         </Border>
+
+        <CheckBox x:Name="MusicBox" Content="aan" HorizontalAlignment="Left" Margin="974,465,0,0" VerticalAlignment="Top" Height="29" Width="103" FontFamily="Baloo Bhai 2">
+            <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
 
     </Grid>
 </Window>

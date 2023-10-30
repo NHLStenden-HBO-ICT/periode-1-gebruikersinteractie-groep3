@@ -32,6 +32,24 @@ namespace ProjectGameInteraction
         
         private const int LEVELTIME = 300;
 
+        private void PauseButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+            gameTimer.Stop();
+            levelTimer.Stop();
+
+           
+
+        }
+
+
+     private void ResumeButtonClick(object sender, RoutedEventArgs e)
+        {
+          
+
+            gameTimer.Start();
+            levelTimer.Start();
+        }
         private double cameraOffsetX = 0; // Track the camera offset
         private const double GAMEWINDOWWIDTH = 800;
 
@@ -44,9 +62,11 @@ namespace ProjectGameInteraction
 
         public GameWindow()
         {
+            
             InitializeComponent();
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
+            
 
             // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -64,10 +84,14 @@ namespace ProjectGameInteraction
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             level.Draw(GameCanvas);
+
+            
         }
 
-        
+   
 
+
+        
         private int levelTime;
         private void LevelTick(object? sender, EventArgs e) 
         {

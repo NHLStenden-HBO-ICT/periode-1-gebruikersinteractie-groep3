@@ -23,6 +23,9 @@
     <Compile Update="shop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SplashScreen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="GameOverScherm.xaml">
@@ -44,6 +47,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="shop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SplashScreen.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
