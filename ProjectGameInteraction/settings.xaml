@@ -43,7 +43,7 @@
         <Image Source="pack://application:,,,/afbeeldingen/helderheid.png" Width="112" Height="112" Margin="879,239,929,713"/>
         <Image Source="pack://application:,,,/afbeeldingen/music.png" Width="112" Height="112" Margin="879,428,929,524" />
         <Image Source="pack://application:,,,/afbeeldingen/volume.png" Width="112" Height="112" Margin="879,640,929,312"/>
-        <Border Background="Gray" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="3" Padding="2" Margin="1102,692,0,0">
+        <Border Background="Gray" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="3" Padding="2" Margin="935,703,0,0">
             <Border Background="Black" CornerRadius="3">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
                     <TextBlock Text="Vol:" Foreground="White" VerticalAlignment="Center" Margin="4 0"/>
                     <ProgressBar x:Name="volumeBar"  Height="10" 
                     Value="{Binding Volume}" 
-                    Width="100"
+                    Width="200"
                     MouseMove="MouseMove" 
                     MouseDown="MouseDown"
                     MouseUp="MouseUp" Style="{DynamicResource VolumeStyle}" Grid.Column="1"/>
@@ -61,7 +61,11 @@
             </Border>
         </Border>
 
-        <CheckBox x:Name="MusicBox" Content="On" HorizontalAlignment="Left" Margin="974,465,0,0" VerticalAlignment="Top" Height="29" Width="103" FontFamily="Baloo Bhai 2"/>
+        <CheckBox x:Name="MusicBox" Content="aan" HorizontalAlignment="Left" Margin="974,465,0,0" VerticalAlignment="Top" Height="29" Width="103" FontFamily="Baloo Bhai 2">
+            <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
 
     </Grid>
 </Window>
