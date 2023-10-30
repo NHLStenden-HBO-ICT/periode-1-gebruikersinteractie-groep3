@@ -28,6 +28,13 @@ namespace ProjectGameInteraction
         private double speedX, speedY, speed = 10;
         private const int LEVELTIME = 300;
 
+        private void PauseButtonClick(object sender, RoutedEventArgs e)
+        {
+            gameTimer.Interval = TimeSpan.FromMilliseconds(16);
+            gameTimer.Tick += GameTick;
+            gameTimer.Stop();
+            levelTimer.Stop();
+        }
 
         public GameWindow()
         {
