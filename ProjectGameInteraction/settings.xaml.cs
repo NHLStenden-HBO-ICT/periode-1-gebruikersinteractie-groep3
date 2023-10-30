@@ -18,10 +18,17 @@ namespace ProjectGameInteraction
     /// <summary>
     /// Interaction logic for settings.xaml
     /// </summary>
-    public partial class settings : Window, INotifyPropertyChanged
+    public partial class settings : Window, INotifyPropertyChanged, IDisposable
     {
+        void IDisposable.Dispose() { }
         private double _volume;
         private bool mouseCaptured = false;
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MusicBox.IsChecked = Properties.Settings.Default.setting;
+        }
+
 
         public double Volume
         {
@@ -78,6 +85,8 @@ namespace ProjectGameInteraction
 
         private void ReturnClick(object? sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.setting = (bool)MusicBox.IsChecked;
+            Properties.Settings.Default.Save();
             Close();
         }
     }

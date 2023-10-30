@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectGameInteraction"
         mc:Ignorable="d"
-        Title="settings" Height="1080" Width="1920">
+        Title="settings" Height="1080" Width="1920" Loaded="Window_Loaded">
     <Window.Resources>
         <Style x:Key="VolumeStyle" TargetType="{x:Type ProgressBar}">
             <Setter Property="Foreground" Value="#FFB00606"/>
@@ -60,6 +60,8 @@
                 </Grid>
             </Border>
         </Border>
+
+        <CheckBox x:Name="MusicBox" Content="On" HorizontalAlignment="Left" Margin="974,465,0,0" VerticalAlignment="Top" Height="29" Width="103" FontFamily="Baloo Bhai 2"/>
 
     </Grid>
 </Window>

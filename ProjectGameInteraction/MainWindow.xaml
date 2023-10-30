@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectGameInteraction"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="1080" Width="1920">
+        Title="MainWindow" Height="1080" Width="1920" Loaded="Window_Loaded">
     <Grid>
         <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
         <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="PCClick" HorizontalAlignment="Left" VerticalAlignment="Top">

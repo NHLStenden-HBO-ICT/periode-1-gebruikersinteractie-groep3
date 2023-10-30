@@ -8,7 +8,7 @@
         Title="ParentalControlTimerSet" Height="1080" Width="1920">
     <Grid>
         <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill" RenderTransformOrigin="0.474,0.497"/>
-        <Button Width="180" Height="180" Margin="10,10,710,344" Background="Transparent"  HorizontalAlignment="Left" VerticalAlignment="Top" Click="ReturnToParentalMenu_Click">
+        <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent"  HorizontalAlignment="Left" VerticalAlignment="Top" Click="ReturnToParentalMenu_Click">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
         <Label Content="Voer hier de tijd in minuten in:" FontFamily="Baloo Bhai 2" FontSize="24" HorizontalAlignment="Left" Height="72" Margin="55,300,0,0" VerticalAlignment="Top" Width="500" Padding="89,18" Background="LightGray" FontWeight="Bold"/>
