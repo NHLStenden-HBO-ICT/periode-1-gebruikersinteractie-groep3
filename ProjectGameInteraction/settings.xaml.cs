@@ -78,6 +78,23 @@ namespace ProjectGameInteraction
 
         private void ReturnClick(object? sender, RoutedEventArgs e)
         {
+            mouseCaptured = false;
+        }
+
+        #region Property Changed
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        private void ReturnClick(object? sender, RoutedEventArgs e)
+        {
             Close();
         }
     }

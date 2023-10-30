@@ -13,6 +13,7 @@
     <None Remove="Afbeeldingen\citybackground.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
     <None Remove="Afbeeldingen\helderheid.png" />
+    <None Remove="Afbeeldingen\logo klant.png" />
     <None Remove="Afbeeldingen\music.png" />
     <None Remove="Afbeeldingen\playbutton.png" />
     <None Remove="Afbeeldingen\playbutton2.png" />
@@ -57,6 +58,10 @@
     <Resource Include="Afbeeldingen\volume.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Afbeeldingen\logo klant.png" />
   </ItemGroup>
 
 </Project>
