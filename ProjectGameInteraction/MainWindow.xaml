@@ -26,7 +26,7 @@
         </Button>
 
         <Border   BorderThickness="0" HorizontalAlignment="Center"  Background="#ff7200" CornerRadius="50" Margin="0,71,0,0" VerticalAlignment="Top" Width="940" Height="222">
-            <Label Content="Jumping Jacks" FontFamily="Baloo Bhai 2" HorizontalAlignment="Center" VerticalAlignment="center" Foreground="white" FontSize="130"/>
+            <Label Content="Jumping Jacks" FontFamily="./Fonts/#Baloo Bhai 2" HorizontalAlignment="Center" VerticalAlignment="center" Foreground="white" FontSize="130"/>
         </Border>
        
 
