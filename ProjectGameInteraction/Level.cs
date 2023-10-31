@@ -118,17 +118,23 @@ namespace ProjectGameInteraction
             public float X { get; private set; } // Left
             public float Y { get; private set; } // Bottom
             public double Speed { get; set; }
+            public float Height { get; private set; }
+            public float Width { get; private set; }
+            public Color Color { get; set; }
             public Rectangle? Element { get; internal set; }
 
             // Constructors
-            public Enemy(float x, float y, float speed) : this(x, y, speed, null) { }
-            public Enemy(float x, float y, float speed, Rectangle? element)
+            public Enemy(float x, float y, float speed) : this(x, y, speed, Color.FromRgb(255, 0, 0)) { }
+            public Enemy(float x, float y, float speed, Color color, float height = ENEMYHEIGHT, float width = ENEMYWIDTH, Rectangle? element = null)
             {
                 X = x;
                 Y = y;
                 Speed = speed;
+                Height = height;
+                Width = width;
                 Element = element;
                 enemy = new(X, Y, ENEMYHEIGHT, ENEMYWIDTH);
+                Color = color;
             }
         }
 
@@ -211,9 +217,9 @@ namespace ProjectGameInteraction
             {
                 var enemyElement = new Rectangle()
                 {
-                    Height = Enemy.ENEMYHEIGHT,
-                    Width = Enemy.ENEMYWIDTH,
-                    Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0))
+                    Height = enemy.Height,
+                    Width = enemy.Width,
+                    Fill = new SolidColorBrush(enemy.Color)
                 };
                 Canvas.SetBottom(enemyElement, enemy.Y);
                 Canvas.SetLeft(enemyElement, enemy.X);

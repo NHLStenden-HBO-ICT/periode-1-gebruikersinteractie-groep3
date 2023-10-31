@@ -54,10 +54,10 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-           new List<Coin>() { new(650f, 60f), new(250f, 60f), new(400f, 60f),   new(450f, 180f), new(1200f, 480f) },
+           new List<Coin>() {  new(250f, 60f),   new(450f, 180f), new(650f, 60f), new(1200f, 480f) },
            new List<Platform>() { new(1600,0,1000,Color.FromRgb(0,128,0)), new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200) },
-           new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f) }
-           
+           new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f), 
+/*bird*/   new(1000,300,4,Color.FromRgb(0,0,0),Enemy.ENEMYHEIGHT,80) }
         );
         private int collectedCoins = 0;
 
@@ -276,7 +276,7 @@ namespace ProjectGameInteraction
                 // Enemy Collision
                 if (!enemyRect.IntersectsWith(playerRect)) continue; // no collision
 
-                if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + Enemy.ENEMYHEIGHT) // player jumps on top of enemy
+                if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + enemy.Height) // player jumps on top of enemy
                 {
                     speedY = 30;
                     enemiesToRemove.Add(enemy);
