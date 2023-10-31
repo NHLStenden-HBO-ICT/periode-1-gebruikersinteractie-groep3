@@ -63,7 +63,7 @@ namespace ProjectGameInteraction
             public Rectangle? Element { get; internal set; }
 
             // Constructors
-            public Platform(float x, float y, float length) : this(x, y, length, Color.FromRgb(127,127,127)) { }
+            public Platform(float x, float y, float length) : this(x, y, length, Color.FromRgb(0,0,0)) { }
             public Platform(float x, float y, float length, Color color, Rectangle? element = null)
             {
                 X = x;
