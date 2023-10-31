@@ -12,6 +12,8 @@
     <Content Include="Afbeeldingen\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Remove="Afbeeldingen\lock.png" />
+    <Content Remove="Afbeeldingen\playbutton black.png" />
 	  <Content Include="Fonts\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
@@ -21,9 +23,11 @@
     <None Remove="Afbeeldingen\exit.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
     <None Remove="Afbeeldingen\helderheid.png" />
+    <None Remove="Afbeeldingen\lock.png" />
     <None Remove="Afbeeldingen\lego-yoda-death-sound-effect.mp3" />
     <None Remove="Afbeeldingen\logo klant.png" />
     <None Remove="Afbeeldingen\music.png" />
+    <None Remove="Afbeeldingen\playbutton black.png" />
     <None Remove="Afbeeldingen\playbutton.png" />
     <None Remove="Afbeeldingen\playbutton2.png" />
     <None Remove="Afbeeldingen\returnicon.png" />
@@ -48,8 +52,14 @@
     <Resource Include="Afbeeldingen\helderheid.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Afbeeldingen\lock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Afbeeldingen\music.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Afbeeldingen\playbutton black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Afbeeldingen\playbutton.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

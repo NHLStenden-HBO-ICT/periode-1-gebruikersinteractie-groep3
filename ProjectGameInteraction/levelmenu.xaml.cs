@@ -31,12 +31,36 @@ namespace ProjectGameInteraction
             Close();
         }
 
-        private void SpeelNu(object sender, RoutedEventArgs e)
+        private void Level1Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gw = new GameWindow();
-            gw.Show();
-
+            GameWindow gameWindow = new GameWindow();
+            gameWindow.Show();
             Close();
+        }
+
+        private void Level2Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Dit level is niet beschikbaar");
+        }
+
+        private void Level3Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Dit level is niet beschikbaar");
+        }
+
+        private void Level4Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Dit level is niet beschikbaar");
+        }
+
+        private void Level5Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Dit level is niet beschikbaar");
+        }
+
+        private void Level6Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Dit level is niet beschikbaar");
         }
     }
 }
