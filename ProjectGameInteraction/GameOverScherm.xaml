@@ -12,5 +12,8 @@
         <Button Content="Speel opnieuw" Width="120" Height="40" FontSize="16" Background="Gray" Foreground="White" Margin="340,249,340,145" Click="SpeelOpnieuwClick" />
         <Button Content="Hoofdmenu" Width="120" Height="40" FontSize="16" Background="Gray" Foreground="White" Margin="340,307,340,87" Click="HoofdmenuClick" />
 
+        <MediaElement Name="mediaElement"  Source="Afbeeldingen\lego-yoda-death-sound-effect.mp3 "/>
+        
+
     </Grid>
 </Window>

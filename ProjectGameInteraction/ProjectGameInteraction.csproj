@@ -16,6 +16,7 @@
     <None Remove="Afbeeldingen\citybackground.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
     <None Remove="Afbeeldingen\helderheid.png" />
+    <None Remove="Afbeeldingen\lego-yoda-death-sound-effect.mp3" />
     <None Remove="Afbeeldingen\logo klant.png" />
     <None Remove="Afbeeldingen\music.png" />
     <None Remove="Afbeeldingen\playbutton.png" />
@@ -23,6 +24,7 @@
     <None Remove="Afbeeldingen\returnicon.png" />
     <None Remove="Afbeeldingen\settings.png" />
     <None Remove="Afbeeldingen\shoppingcart.png" />
+    <None Remove="Afbeeldingen\uuhhh_iqsgYFh.mp3" />
     <None Remove="Afbeeldingen\volume.png" />
   </ItemGroup>
 
