@@ -7,14 +7,26 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800">
     <Grid>
+        <Popup Name="MyPopup"
+               Placement="Mouse"
+               HorizontalOffset="-100"
+               VerticalOffset="-100"
+               AllowsTransparency="True">
+            <Grid>
+                <Rectangle Margin="100,100,500,50" Width="700" Height="800" Fill="#555555" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Name="ResumeButton" FontFamily="Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="100,100,550,100" Background="#fff500" Content="Hervatten" Click="ResumeButtonClick" Height="50" Width="250" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <Button Name="Hoofdmenu" FontFamily="Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="150,100,100,100" Background="#fff500" Content="Hoofdmenu" Click="HoofdmenuClick" Height="50" Width="250" HorizontalAlignment="left" VerticalAlignment="Bottom"/>
+                <Border   BorderThickness="3" BorderBrush="#000000" HorizontalAlignment="Center"  Background="#8b00ff" CornerRadius="50" Margin="120,140,520,0" VerticalAlignment="Top" Width="400" Height="150">
+                    <Label Content="Pauze" FontFamily="Baloo Bhai 2" HorizontalAlignment="Center" VerticalAlignment="center" Foreground="#000000" FontSize="130"/>
+                </Border>
+            </Grid>
+        </Popup>
         <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="1920" Height="Auto">
-
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
             <Rectangle Name="Ground" Fill="Green" Width="1920" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
-            <Button FontFamily="./Fonts/#Baloo Bhai 2"  Name="PauseButton" Content="Pause" Click="PauseButtonClick" Canvas.Left="632" Canvas.Top="10"/>
-            <Button FontFamily="./Fonts/#Baloo Bhai 2"  Name="ResumeButton" Content="Resume" Canvas.Left="567" Canvas.Top="10" Click="ResumeButtonClick"/>
-
-
+            <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent">
+                <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
+            </Button>
             <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Right="500" Canvas.Top="18" />
             <!--coins counter-->
             <Grid HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="450" Width="800">
