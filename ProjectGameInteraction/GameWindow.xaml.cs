@@ -170,6 +170,7 @@ namespace ProjectGameInteraction
             if (speedY > -100)
             {
                 speedY -= 5;
+                onGround = false;
             }
 
             // Player sprite movement
