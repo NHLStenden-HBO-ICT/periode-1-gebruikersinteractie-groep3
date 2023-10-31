@@ -54,9 +54,9 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-            new() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
-            new() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
-            new() { new(600f, 40, 3f), new(1000f, 40, 3f) }
+            new List<Coin>() { new(650f, 60f), new(250f, 60f), new(400f, 60f),   new(450f, 180f), new(1200f, 480f) },
+           new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100), new(1200f, 430f, 100) },
+            new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f) }
         );
         private int collectedCoins = 0;
 
@@ -188,7 +188,7 @@ namespace ProjectGameInteraction
             coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             PauseButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-
+            Coords.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
 
             // Jump
             if (jump && onGround)
@@ -314,6 +314,7 @@ namespace ProjectGameInteraction
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
+            Coords.Text = $"{lastCoordinate.x},{lastCoordinate.y}";
         }
         
     }
