@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:ProjectGameInteraction"
         mc:Ignorable="d"
         Title="GameOverScherm" Height="450" Width="800">
-    <Grid Background="LightGray">
+    <Grid Background="#8b00ff">
         <TextBlock FontFamily="./Fonts/#Baloo Bhai 2"  Text="Game Over" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="60" Foreground="White" FontWeight="Bold" Margin="0,112,0,0" />
 
-        <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Speel opnieuw" Width="120" Height="40" FontSize="16" Background="Gray" Foreground="White" Margin="340,249,340,145" Click="SpeelOpnieuwClick" />
-        <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Hoofdmenu" Width="120" Height="40" FontSize="16" Background="Gray" Foreground="White" Margin="340,307,340,87" Click="HoofdmenuClick" />
+        <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Speel opnieuw" Width="120" Height="40" FontSize="16" Background="#000000" Foreground="White" Margin="340,249,340,145" Click="SpeelOpnieuwClick" />
+        <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Hoofdmenu" Width="120" Height="40" FontSize="16" Background="#000000" Foreground="White" Margin="340,307,340,87" Click="HoofdmenuClick" />
 
         <MediaElement Name="mediaElement"  Source="Afbeeldingen\lego-yoda-death-sound-effect.mp3 "/>
         

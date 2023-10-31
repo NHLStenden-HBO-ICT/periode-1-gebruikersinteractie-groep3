@@ -25,6 +25,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
+	
+
+  <ItemGroup>
+    <Content Update="Afbeeldingen\music2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="Properties\Settings.settings">

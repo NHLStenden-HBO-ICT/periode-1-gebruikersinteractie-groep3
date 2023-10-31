@@ -102,7 +102,7 @@ namespace ProjectGameInteraction
         private void UpdateTimerDisplay()
         {
             TimeSpan timeSpan = TimeSpan.FromSeconds(timerDuration);
-            timerDisplay.Text = timeSpan.ToString(@"mm\:ss");
+            timerDisplay.Text = timeSpan.ToString(@"h\:mm\:ss");
         }
     }
 }

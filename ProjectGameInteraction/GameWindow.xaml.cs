@@ -35,22 +35,25 @@ namespace ProjectGameInteraction
 
         private void PauseButtonClick(object sender, RoutedEventArgs e)
         {
-            
             gameTimer.Stop();
             levelTimer.Stop();
-
-           
-
+            MyPopup.IsOpen = true;
         }
 
 
-     private void ResumeButtonClick(object sender, RoutedEventArgs e)
+        private void ResumeButtonClick(object sender, RoutedEventArgs e)
         {
-          
-
             gameTimer.Start();
             levelTimer.Start();
+            MyPopup.IsOpen = false;
+            GameCanvas.Focus();
         }
+
+        private void HoofdmenuClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private double cameraOffsetX = 0; // Track the camera offset
         private const double GAMEWINDOWWIDTH = 800;
 
@@ -63,7 +66,6 @@ namespace ProjectGameInteraction
 
         public GameWindow()
         {
-            
             InitializeComponent();
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
