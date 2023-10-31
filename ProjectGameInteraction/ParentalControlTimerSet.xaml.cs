@@ -43,7 +43,7 @@ namespace ProjectGameInteraction
         {
             if (!timerRunning)
             {
-                if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0 && minutes <= int.MaxValue)
+                if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0 && minutes <= int.MaxValue / 60)
                 {
                     // Converteer de ingevoerde minuten naar seconden
                     timerDuration = minutes * 60;
@@ -102,7 +102,7 @@ namespace ProjectGameInteraction
         private void UpdateTimerDisplay()
         {
             TimeSpan timeSpan = TimeSpan.FromSeconds(timerDuration);
-            timerDisplay.Text = timeSpan.ToString(@"h\:mm\:ss");
+            timerDisplay.Text = timeSpan.ToString(@"dd\:hh\:mm\:ss");
         }
     }
 }
