@@ -43,7 +43,7 @@ namespace ProjectGameInteraction
         {
             if (!timerRunning)
             {
-                if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0)
+                if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0 && minutes <= int.MaxValue)
                 {
                     // Converteer de ingevoerde minuten naar seconden
                     timerDuration = minutes * 60;
