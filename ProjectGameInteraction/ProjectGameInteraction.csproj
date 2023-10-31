@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Afbeeldingen\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Remove="Afbeeldingen\3885422.png" />
     <None Remove="Afbeeldingen\alarmclock.png" />
     <None Remove="Afbeeldingen\citybackground.png" />
