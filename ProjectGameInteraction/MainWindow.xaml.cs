@@ -31,7 +31,7 @@ namespace ProjectGameInteraction
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
-            mediaPlayer.Open(new Uri(string.Format("{0}\\music2.mp3", AppDomain.CurrentDomain.BaseDirectory)));
+            mediaPlayer.Open(new Uri("Afbeeldingen\\music2.mp3", UriKind.Relative));
             mediaPlayer.MediaEnded += new EventHandler(Media_Ended);
             mediaPlayer.Play();
 
@@ -41,7 +41,7 @@ namespace ProjectGameInteraction
             }
         }
 
-        private void Media_Ended(object sender, EventArgs e)
+        private void Media_Ended(object? sender, EventArgs e)
         {
             if (Properties.Settings.Default.setting)
             {
