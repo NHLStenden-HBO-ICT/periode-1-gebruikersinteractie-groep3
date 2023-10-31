@@ -24,7 +24,7 @@
         <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="1920" Height="Auto">
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
             <Rectangle Name="Ground" Fill="Green" Width="1920" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
-            <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent">
+            <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent" IsTabStop="False">
                 <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
             </Button>
             <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Right="500" Canvas.Top="18" />
