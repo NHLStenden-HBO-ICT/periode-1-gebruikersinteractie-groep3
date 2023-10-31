@@ -21,19 +21,21 @@
                 </Border>
             </Grid>
         </Popup>
-        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="1920" Height="Auto">
+        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="3600" Height="Auto">
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
-            <Rectangle Name="Ground" Fill="Green" Width="1920" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
+            <Rectangle Name="Ground" Fill="Green" Width="1350" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
             <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent">
                 <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
             </Button>
-            <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Right="500" Canvas.Top="18" />
+            <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="1600" Canvas.Top="18" />
             <!--coins counter-->
             <Grid HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="450" Width="800">
                 <Image x:Name="Coins_Count_Symbol" Source="/Afbeeldingen/3885422.png" Margin="55,-1,686,374">
                 </Image>
                 <TextBlock FontFamily="./Fonts/#Baloo Bhai 2"  x:Name="coinCountTextBlock" FontSize="40" Width="100" Height="60" Canvas.Left="0" Canvas.Bottom="100" Margin="91,7,609,393" TextAlignment="Center"><Run Language="nl-nl" Text="0"/></TextBlock>
             </Grid>
+            <TextBlock x:Name="Coords" FontSize="40" Width="200" Height="60" Canvas.Left="0" Canvas.Bottom="300"/>
+
         </Canvas>
     </Grid>
 </Window>

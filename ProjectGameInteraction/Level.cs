@@ -59,17 +59,19 @@ namespace ProjectGameInteraction
             public float X { get; private set; } // Left
             public float Y { get; private set; } // Bottom
             public float Length { get; private set; }
+            public Color Color { get; set; }
             public Rectangle? Element { get; internal set; }
 
             // Constructors
-            public Platform(float x, float y, float length) : this(x, y, length, null) { }
-            public Platform(float x, float y, float length, Rectangle? element)
+            public Platform(float x, float y, float length) : this(x, y, length, Color.FromRgb(0,0,0)) { }
+            public Platform(float x, float y, float length, Color color, Rectangle? element = null)
             {
                 X = x;
                 Y = y;
                 Length = length;
                 Element = element;
                 platform = new(X, Y, Length, PLATFORMHEIGHT);
+                Color = color;
             }
 
             // Methods
@@ -116,17 +118,23 @@ namespace ProjectGameInteraction
             public float X { get; private set; } // Left
             public float Y { get; private set; } // Bottom
             public double Speed { get; set; }
+            public float Height { get; private set; }
+            public float Width { get; private set; }
+            public Color Color { get; set; }
             public Rectangle? Element { get; internal set; }
 
             // Constructors
-            public Enemy(float x, float y, float speed) : this(x, y, speed, null) { }
-            public Enemy(float x, float y, float speed, Rectangle? element)
+            public Enemy(float x, float y, float speed) : this(x, y, speed, Color.FromRgb(255, 0, 0)) { }
+            public Enemy(float x, float y, float speed, Color color, float height = ENEMYHEIGHT, float width = ENEMYWIDTH, Rectangle? element = null)
             {
                 X = x;
                 Y = y;
                 Speed = speed;
+                Height = height;
+                Width = width;
                 Element = element;
                 enemy = new(X, Y, ENEMYHEIGHT, ENEMYWIDTH);
+                Color = color;
             }
         }
 
@@ -197,7 +205,7 @@ namespace ProjectGameInteraction
                 {
                     Width = platform.Length,
                     Height = Platform.PLATFORMHEIGHT,
-                    Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0))
+                    Fill = new SolidColorBrush(platform.Color)
                 };
                 Canvas.SetBottom(platformElement, platform.Y);
                 Canvas.SetLeft(platformElement, platform.X);
@@ -209,9 +217,9 @@ namespace ProjectGameInteraction
             {
                 var enemyElement = new Rectangle()
                 {
-                    Height = Enemy.ENEMYHEIGHT,
-                    Width = Enemy.ENEMYWIDTH,
-                    Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0))
+                    Height = enemy.Height,
+                    Width = enemy.Width,
+                    Fill = new SolidColorBrush(enemy.Color)
                 };
                 Canvas.SetBottom(enemyElement, enemy.Y);
                 Canvas.SetLeft(enemyElement, enemy.X);
