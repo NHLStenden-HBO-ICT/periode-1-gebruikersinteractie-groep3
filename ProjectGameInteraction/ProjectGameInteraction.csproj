@@ -12,11 +12,11 @@
     <Content Include="Afbeeldingen\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+	<Content Include="Fonts\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>	  
+	</Content>
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Afbeeldingen\music.png" />
-  </ItemGroup>
+	
 
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
@@ -31,10 +31,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Afbeeldingen\logo klant.png" />
-    <Resource Include="Afbeeldingen\music.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
 </Project>
