@@ -5,62 +5,16 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release;Release Deploy</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Include="Afbeeldingen\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Remove="Afbeeldingen\3885422.png" />
-    <None Remove="Afbeeldingen\alarmclock.png" />
-    <None Remove="Afbeeldingen\citybackground.png" />
-    <None Remove="Afbeeldingen\exitbutton.png" />
-    <None Remove="Afbeeldingen\helderheid.png" />
-    <None Remove="Afbeeldingen\logo klant.png" />
-    <None Remove="Afbeeldingen\music.png" />
-    <None Remove="Afbeeldingen\playbutton.png" />
-    <None Remove="Afbeeldingen\playbutton2.png" />
-    <None Remove="Afbeeldingen\returnicon.png" />
-    <None Remove="Afbeeldingen\settings.png" />
-    <None Remove="Afbeeldingen\shoppingcart.png" />
-    <None Remove="Afbeeldingen\volume.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Afbeeldingen\3885422.png" />
-    <Resource Include="Afbeeldingen\alarmclock.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\citybackground.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\exitbutton.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\helderheid.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\music.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\playbutton.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\playbutton2.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\returnicon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\settings.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\shoppingcart.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Afbeeldingen\volume.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+	<Content Include="Fonts\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
   </ItemGroup>
 
   <ItemGroup>
