@@ -5,6 +5,7 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release;Release Deploy</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,12 +14,17 @@
     </Content>
     <Content Remove="Afbeeldingen\lock.png" />
     <Content Remove="Afbeeldingen\playbutton black.png" />
+	  <Content Include="Fonts\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
     <None Remove="Afbeeldingen\3885422.png" />
     <None Remove="Afbeeldingen\alarmclock.png" />
     <None Remove="Afbeeldingen\citybackground.png" />
+    <None Remove="Afbeeldingen\exit.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
     <None Remove="Afbeeldingen\helderheid.png" />
     <None Remove="Afbeeldingen\lock.png" />
+    <None Remove="Afbeeldingen\lego-yoda-death-sound-effect.mp3" />
     <None Remove="Afbeeldingen\logo klant.png" />
     <None Remove="Afbeeldingen\music.png" />
     <None Remove="Afbeeldingen\playbutton black.png" />
@@ -27,6 +33,7 @@
     <None Remove="Afbeeldingen\returnicon.png" />
     <None Remove="Afbeeldingen\settings.png" />
     <None Remove="Afbeeldingen\shoppingcart.png" />
+    <None Remove="Afbeeldingen\uuhhh_iqsgYFh.mp3" />
     <None Remove="Afbeeldingen\volume.png" />
   </ItemGroup>
 
@@ -38,6 +45,7 @@
     <Resource Include="Afbeeldingen\citybackground.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Afbeeldingen\exit.png" />
     <Resource Include="Afbeeldingen\exitbutton.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
