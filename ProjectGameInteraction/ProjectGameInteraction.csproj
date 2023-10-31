@@ -14,6 +14,7 @@
     <None Remove="Afbeeldingen\3885422.png" />
     <None Remove="Afbeeldingen\alarmclock.png" />
     <None Remove="Afbeeldingen\citybackground.png" />
+    <None Remove="Afbeeldingen\exit.png" />
     <None Remove="Afbeeldingen\exitbutton.png" />
     <None Remove="Afbeeldingen\helderheid.png" />
     <None Remove="Afbeeldingen\lego-yoda-death-sound-effect.mp3" />
@@ -36,6 +37,7 @@
     <Resource Include="Afbeeldingen\citybackground.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Afbeeldingen\exit.png" />
     <Resource Include="Afbeeldingen\exitbutton.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
