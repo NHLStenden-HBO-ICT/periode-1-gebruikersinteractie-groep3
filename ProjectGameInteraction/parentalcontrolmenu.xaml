@@ -11,10 +11,9 @@
         <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
-        <TextBox x:Name="PinInputTextBox" HorizontalAlignment="Center" Height="198" Margin="0,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="728" Background="LightGray" FontFamily="Baloo Bhai 2" FontSize="100" Text="" Padding="240,20" BorderThickness="5" BorderBrush="DarkGray" MaxLength="4"/>
-        <Button Content="Opslaan" HorizontalAlignment="Center" Margin="0,532,0,0" VerticalAlignment="Top" Width="370" Height="102" Click="SetPinButton_Click"/>
-        <Button Content="Ontgrendel" HorizontalAlignment="Center" Margin="0,667,0,0" VerticalAlignment="Top" Width="370" Height="102" Click="UnlockButton_Click"/>
-        <TextBox x:Name="EnteredPinTextBox" HorizontalAlignment="Center" Height="198" Margin="0,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="728" Background="LightGray" FontFamily="Baloo Bhai 2" FontSize="100" Text="" Padding="240,20" BorderThickness="5" BorderBrush="DarkGray" MaxLength="4" />
+        <TextBox x:Name="PinInputTextBox" HorizontalAlignment="Center" Height="198" Margin="0,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="728" Background="LightGray" FontFamily="Baloo Bhai 2" FontSize="100" Text="" Padding="240,20" BorderThickness="5" BorderBrush="DarkGray" MaxLength="4" PreviewTextInput="IsNumber"/>
+        <Button FontFamily="./Fonts/#Baloo Bhai 2" Content="Opslaan" HorizontalAlignment="Center" Margin="0,532,0,0" VerticalAlignment="Top" Width="370" Height="102" Click="SetPinButton_Click"/>
+        <Button FontFamily="./Fonts/#Baloo Bhai 2" Content="Ontgrendel" HorizontalAlignment="Center" Margin="0,667,0,0" VerticalAlignment="Top" Width="370" Height="102" Click="UnlockButton_Click"/>
 
 
     </Grid>
