@@ -70,8 +70,5 @@
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png" Stretch="Uniform"/>
         </Button>
 
-
-        <Button BorderThickness="0" Content="Speel nu" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="60"  Margin="611,177,611,429" Click="SpeelNu"/>
-
     </Grid>
 </Window>
