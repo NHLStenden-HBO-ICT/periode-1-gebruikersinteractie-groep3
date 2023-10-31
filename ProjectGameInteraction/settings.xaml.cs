@@ -48,7 +48,7 @@ namespace ProjectGameInteraction
             WindowStyle = WindowStyle.None;
         }
 
-        private void MouseMove(object? sender, MouseEventArgs e)
+        private new void MouseMove(object? sender, MouseEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed && mouseCaptured)
             {
@@ -58,7 +58,7 @@ namespace ProjectGameInteraction
             }
         }
 
-        private void MouseDown(object? sender, MouseButtonEventArgs e)
+        private new void MouseDown(object? sender, MouseButtonEventArgs e)
         {
             mouseCaptured = true;
             var x = e.GetPosition(volumeBar).X;
@@ -66,14 +66,14 @@ namespace ProjectGameInteraction
             Volume = ratio * volumeBar.Maximum;
         }
 
-        private void MouseUp(object? sender, MouseButtonEventArgs e)
+        private new void MouseUp(object? sender, MouseButtonEventArgs e)
         {
             mouseCaptured = false;
         }
 
         #region Property Changed
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)
         {
@@ -85,7 +85,7 @@ namespace ProjectGameInteraction
 
         private void ReturnClick(object? sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.setting = (bool)MusicBox.IsChecked;
+            Properties.Settings.Default.setting = MusicBox.IsChecked.GetValueOrDefault();
             Properties.Settings.Default.Save();
             Close();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,22 +27,23 @@ namespace ProjectGameInteraction
 
         public MainWindow()
         {
+            if (!File.Exists("pincode.txt")) File.Create("pincode.txt");
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
-            mediaPlayer.Open(new Uri(string.Format("{0}\\music2.mp3", AppDomain.CurrentDomain.BaseDirectory)));
+            mediaPlayer.Open(new Uri("Afbeeldingen\\music2.mp3", UriKind.Relative));
             mediaPlayer.MediaEnded += new EventHandler(Media_Ended);
             mediaPlayer.Play();
 
-            if ((bool)Properties.Settings.Default.setting == true)
+            if (Properties.Settings.Default.setting)
             {
                 mediaPlayer.Play();
             }
         }
 
-        private void Media_Ended(object sender, EventArgs e)
+        private void Media_Ended(object? sender, EventArgs e)
         {
-            if ((bool)Properties.Settings.Default.setting == true)
+            if (Properties.Settings.Default.setting)
             {
                 mediaPlayer.Position = TimeSpan.Zero;
                 mediaPlayer.Play();
