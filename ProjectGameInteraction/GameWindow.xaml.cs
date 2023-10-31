@@ -54,9 +54,10 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-            new List<Coin>() { new(650f, 60f), new(250f, 60f), new(400f, 60f),   new(450f, 180f), new(1200f, 480f) },
-           new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100), new(1200f, 430f, 100) },
-            new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f) }
+           new List<Coin>() { new(650f, 60f), new(250f, 60f), new(400f, 60f),   new(450f, 180f), new(1200f, 480f) },
+           new List<Platform>() { new(1600,0,1000,Color.FromRgb(0,128,0)), new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200) },
+           new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f) }
+           
         );
         private int collectedCoins = 0;
 

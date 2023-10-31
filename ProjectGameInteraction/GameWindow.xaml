@@ -10,12 +10,12 @@
         <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="3840" Height="Auto">
 
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
-            <Rectangle Name="Ground" Fill="Green" Width="1920" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
+            <Rectangle Name="Ground" Fill="Green" Width="1350" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
             <Button Name="PauseButton" Content="Pause" Click="PauseButtonClick" Canvas.Left="632" Canvas.Top="10"/>
             <Button Name="ResumeButton" Content="Resume" Canvas.Left="567" Canvas.Top="10" Click="ResumeButtonClick"/>
 
 
-            <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Right="500" Canvas.Top="18" />
+            <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="1600" Canvas.Top="18" />
             <!--coins counter-->
             <Grid HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="450" Width="800">
                 <Image x:Name="Coins_Count_Symbol" Source="/Afbeeldingen/3885422.png" Margin="55,-1,686,374">

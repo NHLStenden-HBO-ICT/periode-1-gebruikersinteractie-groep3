@@ -59,17 +59,19 @@ namespace ProjectGameInteraction
             public float X { get; private set; } // Left
             public float Y { get; private set; } // Bottom
             public float Length { get; private set; }
+            public Color Color { get; set; }
             public Rectangle? Element { get; internal set; }
 
             // Constructors
-            public Platform(float x, float y, float length) : this(x, y, length, null) { }
-            public Platform(float x, float y, float length, Rectangle? element)
+            public Platform(float x, float y, float length) : this(x, y, length, Color.FromRgb(127,127,127)) { }
+            public Platform(float x, float y, float length, Color color, Rectangle? element = null)
             {
                 X = x;
                 Y = y;
                 Length = length;
                 Element = element;
                 platform = new(X, Y, Length, PLATFORMHEIGHT);
+                Color = color;
             }
 
             // Methods
@@ -197,7 +199,7 @@ namespace ProjectGameInteraction
                 {
                     Width = platform.Length,
                     Height = Platform.PLATFORMHEIGHT,
-                    Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0))
+                    Fill = new SolidColorBrush(platform.Color)
                 };
                 Canvas.SetBottom(platformElement, platform.Y);
                 Canvas.SetLeft(platformElement, platform.X);
