@@ -34,12 +34,12 @@
         </Button>
 
         <Border HorizontalAlignment="Center" Width="1056" Height="776" Background="#d9d9d9" CornerRadius="50" Margin="0,54,0,0" VerticalAlignment="Top">
-            <Label Content="Instellingen" FontFamily="Baloo Bhai 2" FontSize="97" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Black"/>
+            <Label Content="Instellingen" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="97" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Black"/>
 
         </Border>
-        <Label Content="Helderheid" FontFamily="Ballo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,256,0,0"/>
-        <Label Content="Muziek" FontFamily="Ballo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,455,0,0" RenderTransformOrigin="0.207,0.449"/>
-        <Label Content="Hoofdvolume" FontFamily="Ballo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,675,0,0"/>
+        <Label Content="Helderheid" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,256,0,0"/>
+        <Label Content="Muziek" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,455,0,0" RenderTransformOrigin="0.207,0.449"/>
+        <Label Content="Hoofdvolume" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="56" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Margin="468,675,0,0"/>
         <Image Source="pack://application:,,,/afbeeldingen/helderheid.png" Width="112" Height="112" Margin="879,239,929,713"/>
         <Image Source="pack://application:,,,/afbeeldingen/music.png" Width="112" Height="112" Margin="879,428,929,524" />
         <Image Source="pack://application:,,,/afbeeldingen/volume.png" Width="112" Height="112" Margin="879,640,929,312"/>
