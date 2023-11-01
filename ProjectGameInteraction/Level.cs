@@ -16,6 +16,15 @@ namespace ProjectGameInteraction
 {
     public class Level
     {
+        public class Ground : Platform
+        {
+            // Constructors
+            public Ground(float x, float y, float width, Rectangle? element = null) : base(x, y, width, element)
+            {
+                platform = new(x, 0, width, y);
+            }
+        }
+
         public class Coin
         {
             // Constants
@@ -53,7 +62,7 @@ namespace ProjectGameInteraction
             public const int PLATFORMHEIGHT = 40;
 
             // Variables
-            private Rect platform;
+            protected Rect platform;
 
             // Properties
             public float X { get; private set; } // Left
@@ -89,13 +98,13 @@ namespace ProjectGameInteraction
             {
                 Rect playerRect = new(Canvas.GetLeft(player), Canvas.GetBottom(player), player.Width, player.Height);
                 if (Element == null || !platform.IntersectsWith(playerRect)) return 0;
-                if (Canvas.GetBottom(player) > Canvas.GetBottom(Element) && (playerRect.IntersectsWith(platform)))
+                if (Canvas.GetBottom(player) > Canvas.GetBottom(Element))
                     return 1;
-                else if (lastCoordinate.y <= Canvas.GetBottom(Element) && (playerRect.IntersectsWith(platform)))
+                else if (lastCoordinate.y <= Canvas.GetBottom(Element))
                     return 2;
-                else if (lastCoordinate.x <= Canvas.GetLeft(Element) && (Canvas.GetLeft(Element) <= Canvas.GetLeft(player) + player.Width) && playerRect.IntersectsWith(platform))
+                else if (lastCoordinate.x <= Canvas.GetLeft(Element) && (Canvas.GetLeft(Element) <= Canvas.GetLeft(player) + player.Width))
                     return 3;
-                else if (lastCoordinate.x >= Canvas.GetLeft(Element) + Element.Width && (Canvas.GetLeft(Element) + Element.Width >= Canvas.GetLeft(player)) && playerRect.IntersectsWith(platform))
+                else if (lastCoordinate.x >= Canvas.GetLeft(Element) + Element.Width && (Canvas.GetLeft(Element) + Element.Width >= Canvas.GetLeft(player)))
                     return 4;
                 
               
@@ -130,26 +139,52 @@ namespace ProjectGameInteraction
             }
         }
 
+        public List<Ground> Grounds { get; private set; }
         public List<Coin> Coins { get; private set; }
         public List<Platform> Platforms { get; private set; }
         public List<Enemy> Enemies { get; private set; }
 
-        public Level() : this(new(), new(), new())
+        public Level() : this(new(), new(), new(), new())
         {
         }
 
         public Level(
+            List<Ground> grounds,
             List<Coin> coins, 
             List<Platform> platforms,
             List<Enemy> enemies
             )
         {
+            Grounds = grounds;
             Coins = coins;
             Platforms = platforms;
             Enemies = enemies;
         }
 
-        public int CheckCoinCollision(Canvas canvas, Rectangle player)
+        // returns true if on top
+        public bool GroundCollision(Canvas canvas, Rectangle player, (double x, double y) lastCoordinate)
+        {
+            foreach (var ground in Grounds)
+            {
+                switch(ground.IntersectsWithDirectional(player, lastCoordinate))
+                {
+                    case 1:
+                        Canvas.SetBottom(player, ground.Y);
+                        return true;
+                    case 3:
+                        Canvas.SetLeft(player, ground.X + player.Width);
+                        break;
+                    case 4:
+                        Canvas.SetLeft(player, ground.X + ground.Length);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return false;
+        }
+
+        public int CoinCollision(Canvas canvas, Rectangle player)
         {
             int collectedCoins = 0;
             Rect playerRect = new(Canvas.GetLeft(player), Canvas.GetBottom(player), player.Width, player.Height);
@@ -173,6 +208,20 @@ namespace ProjectGameInteraction
         // SHOULD ONLY BE CALLED ON LEVEL START
         public void Draw(Canvas canvas)
         {
+            foreach ( var ground in Grounds)
+            {
+                var groundElement = new Rectangle()
+                {
+                    Height = ground.Y,
+                    Width = ground.Length,
+                    Fill = new SolidColorBrush(Colors.Green)
+                };
+                Canvas.SetBottom(groundElement, 0);
+                Canvas.SetLeft(groundElement, ground.X);
+                canvas.Children.Add(groundElement);
+                ground.Element = groundElement;
+            }
+
             foreach ( var coin in Coins )
             {
                 var coinElement = new Ellipse()
@@ -191,7 +240,7 @@ namespace ProjectGameInteraction
             }
 
 
-            foreach ( Platform platform in Platforms)
+            foreach ( var platform in Platforms)
             {
                 var platformElement = new Rectangle()
                 {

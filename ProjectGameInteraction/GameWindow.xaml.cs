@@ -43,7 +43,7 @@ namespace ProjectGameInteraction
         }
 
 
-     private void ResumeButtonClick(object sender, RoutedEventArgs e)
+    private void ResumeButtonClick(object sender, RoutedEventArgs e)
         {
           
 
@@ -54,19 +54,18 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-            new() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
-            new() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
-            new() { new(600f, 40, 3f), new(1000f, 40, 3f) }
+            new List<Ground>() { new(0, 40, 900), new(1000, 40, 500) },
+            new List<Coin>() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
+            new List<Platform>() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
+            new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f) }
         );
         private int collectedCoins = 0;
 
         public GameWindow()
         {
-            
             InitializeComponent();
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
-            
 
             // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -84,12 +83,7 @@ namespace ProjectGameInteraction
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             level.Draw(GameCanvas);
-
-            
         }
-
-   
-
 
         
         private int levelTime;
@@ -199,6 +193,7 @@ namespace ProjectGameInteraction
             if (speedY > -100)
             {
                 speedY -= 5;
+                onGround = false;
             }
 
             // Player sprite movement
@@ -209,23 +204,15 @@ namespace ProjectGameInteraction
             // Walls so player can't run off screen left side at the start
             if (Canvas.GetLeft(Player) <= 0)
             {
-                
                 Canvas.SetLeft(Player, 0);
             }
 
 
-
-            
+            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
 
             // Ground Collision
-            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
-            Rect groundRect = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
-            if (playerRect.IntersectsWith(groundRect))
-            {
-                speedY = 0;
-                Canvas.SetBottom(Player, Canvas.GetBottom(Ground) + Ground.Height);
-                onGround = true;
-            }
+            onGround = level.GroundCollision(GameCanvas, Player, lastCoordinate);
+            if (onGround) speedY = 0;
 
             // Platform Collision
             foreach (var platform in level.Platforms)
@@ -307,7 +294,7 @@ namespace ProjectGameInteraction
             }
 
 
-            collectedCoins += level.CheckCoinCollision(GameCanvas, Player);
+            collectedCoins += level.CoinCollision(GameCanvas, Player);
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
