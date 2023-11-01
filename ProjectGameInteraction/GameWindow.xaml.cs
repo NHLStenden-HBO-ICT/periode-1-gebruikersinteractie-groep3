@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Numerics;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
@@ -34,30 +35,36 @@ namespace ProjectGameInteraction
 
         private void PauseButtonClick(object sender, RoutedEventArgs e)
         {
-            
             gameTimer.Stop();
             levelTimer.Stop();
-
-           
-
+            MyPopup.IsOpen = true;
         }
 
 
-    private void ResumeButtonClick(object sender, RoutedEventArgs e)
+        private void ResumeButtonClick(object sender, RoutedEventArgs e)
         {
-          
-
             gameTimer.Start();
             levelTimer.Start();
+            MyPopup.IsOpen = false;
+            GameCanvas.Focus();
         }
+
+        private void HoofdmenuClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private double cameraOffsetX = 0; // Track the camera offset
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-            new List<Ground>() { new(0, 40, 900), new(1000, 40, 500) },
-            new List<Coin>() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
-            new List<Platform>() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
-            new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f) }
+            new List<Ground>() { new(0, 40, 1350), new(1600, 40, 2000) },
+            new List<Coin>() {  new(250f, 60f),   new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484,200) },
+            new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150),
+            new(1900, 320, 100), new(2100,440,50),new(2400,130,200) },
+            new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f), new(1900,40,0),
+/*bird*/    new(1000,300,4,Color.FromRgb(117,117,117),Enemy.ENEMYHEIGHT,80),new(2000, 250, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80),
+/*nagat*/   new(2100, 400, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80) }
         );
         private int collectedCoins = 0;
 
@@ -180,7 +187,9 @@ namespace ProjectGameInteraction
             
             Coins_Count_Symbol.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-
+            ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            PauseButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            Coords.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
 
             // Jump
             if (jump && onGround)
@@ -259,7 +268,7 @@ namespace ProjectGameInteraction
                 // Enemy Collision
                 if (!enemyRect.IntersectsWith(playerRect)) continue; // no collision
 
-                if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + Enemy.ENEMYHEIGHT) // player jumps on top of enemy
+                if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + enemy.Height) // player jumps on top of enemy
                 {
                     speedY = 30;
                     enemiesToRemove.Add(enemy);
@@ -298,6 +307,7 @@ namespace ProjectGameInteraction
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
+            Coords.Text = $"{lastCoordinate.x},{lastCoordinate.y}";
         }
         
     }
