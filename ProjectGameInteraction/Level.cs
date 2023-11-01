@@ -139,16 +139,14 @@ namespace ProjectGameInteraction
             }
         }
 
+        public float End { get; private set; } // X coordinate for level end
         public List<Ground> Grounds { get; private set; }
         public List<Coin> Coins { get; private set; }
         public List<Platform> Platforms { get; private set; }
         public List<Enemy> Enemies { get; private set; }
 
-        public Level() : this(new(), new(), new(), new())
-        {
-        }
-
         public Level(
+            float end,
             List<Ground> grounds,
             List<Coin> coins, 
             List<Platform> platforms,
@@ -156,9 +154,15 @@ namespace ProjectGameInteraction
             )
         {
             Grounds = grounds;
+            End = end;
             Coins = coins;
             Platforms = platforms;
             Enemies = enemies;
+        }
+
+        public bool Finished(Rectangle player)
+        {
+            return Canvas.GetLeft(player) + player.Width >= End;
         }
 
         // returns true if on top
@@ -267,6 +271,26 @@ namespace ProjectGameInteraction
                 canvas.Children.Add(enemyElement);
                 enemy.Element = enemyElement;
             }
+
+            var finish = new Rectangle()
+            {
+                Height = 1000,
+                Width = 90,
+                Fill = new DrawingBrush()
+                {
+                    TileMode = TileMode.Tile,
+                    Viewport = new(0, 0, 32, 32),
+                    ViewportUnits = BrushMappingMode.Absolute,
+                    Drawing = new GeometryDrawing()
+                    {
+                        Geometry = Geometry.Parse("M0,0 H1 V1 H2 V2 H1 V1 H0Z"),
+                        Brush = new SolidColorBrush(Colors.Black)
+                    }
+                }
+            };
+            Canvas.SetBottom(finish, 0);
+            Canvas.SetLeft(finish, End);
+            canvas.Children.Add(finish);
         }
     }
 }

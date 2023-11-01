@@ -54,6 +54,7 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
+            1500,
             new List<Ground>() { new(0, 40, 900), new(1000, 40, 500) },
             new List<Coin>() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
             new List<Platform>() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
@@ -147,6 +148,14 @@ namespace ProjectGameInteraction
 
         private void GameTick(object? sender, EventArgs e)
         {
+            if (level.Finished(Player))
+            {
+                //MessageBox.Show("Finished");
+                //Focus();
+                Close();
+                return;
+            }
+
             // Movement
             if (moveLeft && !moveRight)
             {
