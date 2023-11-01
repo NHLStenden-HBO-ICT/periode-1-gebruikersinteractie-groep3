@@ -58,8 +58,10 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
+            2600,
+            new List<Ground>() { new(0, 40, 1350), new(1600, 40, 2000) },
             new List<Coin>() {  new(250f, 60f),   new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484,200) },
-            new List<Platform>() { /*grond na gat-->*/ new(1600,0,2000,Color.FromRgb(0,128,0)), new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150),
+            new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150),
             new(1900, 320, 100), new(2100,440,50),new(2400,130,200) },
             new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f), new(1900,40,0),
 /*bird*/    new(1000,300,4,Color.FromRgb(117,117,117),Enemy.ENEMYHEIGHT,80),new(2000, 250, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80),
@@ -72,7 +74,6 @@ namespace ProjectGameInteraction
             InitializeComponent();
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
-            
 
             // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -90,12 +91,7 @@ namespace ProjectGameInteraction
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             level.Draw(GameCanvas);
-
-            
         }
-
-   
-
 
         
         private int levelTime;
@@ -159,6 +155,14 @@ namespace ProjectGameInteraction
 
         private void GameTick(object? sender, EventArgs e)
         {
+            if (level.Finished(Player))
+            {
+                //MessageBox.Show("Finished");
+                //Focus();
+                Close();
+                return;
+            }
+
             // Movement
             if (moveLeft && !moveRight)
             {
@@ -218,23 +222,15 @@ namespace ProjectGameInteraction
             // Walls so player can't run off screen left side at the start
             if (Canvas.GetLeft(Player) <= 0)
             {
-                
                 Canvas.SetLeft(Player, 0);
             }
 
 
-
-            
+            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
 
             // Ground Collision
-            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
-            Rect groundRect = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
-            if (playerRect.IntersectsWith(groundRect))
-            {
-                speedY = 0;
-                Canvas.SetBottom(Player, Canvas.GetBottom(Ground) + Ground.Height);
-                onGround = true;
-            }
+            onGround = level.GroundCollision(GameCanvas, Player, lastCoordinate);
+            if (onGround) speedY = 0;
 
             // Platform Collision
             foreach (var platform in level.Platforms)
@@ -307,7 +303,7 @@ namespace ProjectGameInteraction
 
 
             // Player out of bounds
-            if (Canvas.GetBottom(Player) < -100)
+            if (Canvas.GetBottom(Player) < -200)
             {
                 gameTimer.Stop();
                 GameOverScherm GOwindow = new();
@@ -316,7 +312,7 @@ namespace ProjectGameInteraction
             }
 
 
-            collectedCoins += level.CheckCoinCollision(GameCanvas, Player);
+            collectedCoins += level.CoinCollision(GameCanvas, Player);
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
