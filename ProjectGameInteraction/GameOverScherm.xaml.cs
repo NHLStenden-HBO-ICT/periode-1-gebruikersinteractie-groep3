@@ -19,11 +19,17 @@ namespace ProjectGameInteraction
     /// </summary>
     public partial class GameOverScherm : Window
     {
-        public GameOverScherm()
+
+        
+        
+
+    public GameOverScherm()
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
+
+            
         }
 
         private void SpeelOpnieuwClick(object sender, RoutedEventArgs e)

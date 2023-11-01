@@ -7,11 +7,68 @@
         mc:Ignorable="d"
         Title="levelmenu" Height="1080" Width="1920">
     <Grid>
-        <Image Source="pack://application:,,,/afbeeldingen/citybackground.png" Stretch="UniformToFill"/>
-        <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent" Click="ReturnClick" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/afbeeldingen/citybackground.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="300"/>
+            <!-- Eerste rij neemt rest van de beschikbare hoogte in beslag -->
+            <RowDefinition Height="*"/>
+            <!-- Tweede rij neemt rest van de beschikbare hoogte in beslag -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <!-- Knoppen in het rooster -->
+
+        <Button x:Name="Level1"  Grid.Row="1" Grid.Column="1" Margin="27" Click="Level1Click" BorderThickness="5" BorderBrush="DarkGray">
+            <StackPanel Height="auto">
+                <Label Content="Level 1" FontSize="50" Height="70" FontFamily="./Fonts/#Baloo Bhai 2" />
+                <Image Source="pack://application:,,,/afbeeldingen/playbutton black.png" Stretch="Uniform" Height="143" Width="143" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
         </Button>
-        <Button BorderThickness="0" Content="Speel nu" FontFamily="Baloo Bhai 2" FontSize="60"  Margin="611,177,611,429" Click="SpeelNu"/>
+        <Button x:Name="Level2" Grid.Row="1" Grid.Column="2" Margin="27" Click="Level2Click" BorderThickness="5" BorderBrush="DarkGray">
+            <StackPanel Height="auto">
+                <Label Content="Level 2" FontSize="50" Height="70" FontFamily="./Fonts/#Baloo Bhai 2"/>
+                <Image Source="pack://application:,,,/afbeeldingen/lock.png" Stretch="Uniform" Height="143" Width="143" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="Level3" Grid.Row="1" Grid.Column="3" Margin="27" Click="Level3Click" BorderThickness="5" BorderBrush="DarkGray">
+            <StackPanel Height="auto">
+                <Label Content="Level 3" FontSize="50" Height="70" FontFamily="./Fonts/#Baloo Bhai 2"/>
+                <Image Source="pack://application:,,,/afbeeldingen/lock.png" Stretch="Uniform" Height="143" Width="143" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="Level4" Grid.Row="2" Grid.Column="1" Margin="27" Click="Level4Click" BorderThickness="5" BorderBrush="DarkGray">
+            <StackPanel Height="auto">
+                <Label Content="Level 4" FontSize="50" Height="70" FontFamily="./Fonts/#Baloo Bhai 2"/>
+                <Image Source="pack://application:,,,/afbeeldingen/lock.png" Stretch="Uniform" Height="143" Width="143" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="Level5" Grid.Row="2" Grid.Column="2" Margin="27" Click="Level5Click" BorderThickness="5" BorderBrush="DarkGray">
+            <StackPanel Height="auto">
+                <Label Content="Level 5" FontSize="50" Height="70" FontFamily="./Fonts/#Baloo Bhai 2"/>
+                <Image Source="pack://application:,,,/afbeeldingen/lock.png" Stretch="Uniform" Height="143" Width="143" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="Level6" Grid.Row="2" Grid.Column="3" Margin="27" Click="Level6Click" BorderThickness="5" BorderBrush="DarkGray">
+            <StackPanel Height="auto">
+                <Label Content="Level 6" FontSize="50" Height="70" FontFamily="./Fonts/#Baloo Bhai 2"/>
+                <Image Source="pack://application:,,,/afbeeldingen/lock.png" Stretch="Uniform" Height="143" Width="143" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="ReturnButton" BorderThickness="0" Grid.Row="0" Grid.Column="0" Background="Transparent" HorizontalAlignment="Left" Click="ReturnClick">
+            <Image Source="pack://application:,,,/afbeeldingen/returnicon.png" Stretch="Uniform"/>
+        </Button>
 
     </Grid>
 </Window>
