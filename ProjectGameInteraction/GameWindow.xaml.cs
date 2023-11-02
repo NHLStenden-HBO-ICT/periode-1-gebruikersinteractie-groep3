@@ -188,7 +188,7 @@ namespace ProjectGameInteraction
             
             Coins_Count_Symbol.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-            ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            //ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             PauseButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
 
 
