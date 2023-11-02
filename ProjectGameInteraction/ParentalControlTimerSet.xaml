@@ -11,11 +11,11 @@
         <Button BorderThickness="0" Width="180" Height="180" Margin="10,10,710,344" Background="Transparent"  HorizontalAlignment="Left" VerticalAlignment="Top" Click="ReturnToParentalMenu_Click">
             <Image Source="pack://application:,,,/afbeeldingen/returnicon.png"/>
         </Button>
-        <Label Content="Voer hier de tijd in minuten in:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Baloo Bhai 2" FontSize="24" HorizontalAlignment="Left" Height="72" Margin="55,300,0,0" VerticalAlignment="Top" Width="500" Background="LightGray" FontWeight="Bold"/>
-        <TextBox Name="timerTextBox" FontFamily="./Fonts/#Digital-7" FontSize="200" Width="500" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,372,0,0" Background="LightGray" BorderThickness="0"/>
-        <Button Content="Start Timer" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45"  Width="250" Height="75" Click="StartTimer_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="634,378,0,0" RenderTransformOrigin="0.754,0.513" />
-        <Button Content="Reset Timer" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45" Width="250" Height="75" Click="ResetTimer_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="634,482,0,0" />
-        <Label Content="Resterende tijd:" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Height="273" Margin="960,292,0,0" VerticalAlignment="Top" Width="500" Padding="160,18" Background="LightGray"/>
-        <TextBlock Name="timerDisplay" FontFamily="./Fonts/#Digital-7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="960,365,0,0" FontSize="200" Width="500" Height="200" Background="Transparent" Padding="43,0"/>
+        <Label Content="Voer hier de tijd in minuten in:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Baloo Bhai 2" FontSize="24" HorizontalAlignment="Center" Height="72" Margin="0,372,0,0" VerticalAlignment="Top" Width="700" Background="LightGray" FontWeight="Bold"/>
+        <TextBox Name="timerTextBox" FontFamily="./Fonts/#Digital-7 (mono)" FontSize="200" Width="700" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,444,0,0" Background="LightGray" BorderThickness="0"/>
+        <Button Content="Start Timer" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45"  Width="250" Height="75" Click="StartTimer_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,681,0,0" RenderTransformOrigin="0.891,0.035" />
+        <Button Content="Reset Timer" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45" Width="250" Height="75" Click="ResetTimer_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,779,0,0" />
+        <Label Content="Resterende tijd:" HorizontalContentAlignment="Center" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Height="273" Margin="0,56,0,0" VerticalAlignment="Top" Width="700" Padding="160,18" Background="LightGray"/>
+        <TextBlock Text="" TextAlignment="Center" Name="timerDisplay" FontFamily="./Fonts/#Digital-7 (mono)"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,116,0,0" FontSize="200" Width="680" Height="200" Background="Transparent"  />
     </Grid>
 </Window>

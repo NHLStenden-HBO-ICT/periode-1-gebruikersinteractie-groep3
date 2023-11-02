@@ -58,9 +58,14 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-            new() { new(650f, 60f), new(250f, 60f), new(400f, 60f) },
-            new() { new(400f, 130f, 200f), new(800f, 130f, 200f) },
-            new() { new(600f, 40, 3f), new(1000f, 40, 3f) }
+            2600,
+            new List<Ground>() { new(0, 40, 1350), new(1600, 40, 2000) },
+            new List<Coin>() {  new(250f, 60f),   new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484,200) },
+            new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150),
+            new(1900, 320, 100), new(2100,440,50),new(2400,130,200) },
+            new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f), new(1900,40,0),
+/*bird*/    new(1000,300,4,Color.FromRgb(117,117,117),Enemy.ENEMYHEIGHT,80),new(2000, 250, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80),
+/*nagat*/   new(2100, 400, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80) }
         );
         private int collectedCoins = 0;
 
@@ -69,7 +74,6 @@ namespace ProjectGameInteraction
             InitializeComponent();
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
             GameCanvas.Focus();
-            
 
             // game tick
             gameTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -87,12 +91,7 @@ namespace ProjectGameInteraction
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             level.Draw(GameCanvas);
-
-            
         }
-
-   
-
 
         
         private int levelTime;
@@ -154,8 +153,24 @@ namespace ProjectGameInteraction
             }
         }
 
+        private bool finishWindowOpened = false;
+
         private void GameTick(object? sender, EventArgs e)
         {
+            if (level.Finished(Player) && !finishWindowOpened)
+            {
+               
+                this.Close();
+
+                
+                finishWindowOpened = true;
+
+                // Maak een nieuw FinishWindow-venster en open het
+                FinishWindow finishWindow = new FinishWindow();
+                finishWindow.Show();
+            }
+            else { }
+
             // Movement
             if (moveLeft && !moveRight)
             {
@@ -191,7 +206,7 @@ namespace ProjectGameInteraction
             coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             //ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             PauseButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-
+            Coords.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
 
             // Jump
             if (jump && onGround)
@@ -215,23 +230,15 @@ namespace ProjectGameInteraction
             // Walls so player can't run off screen left side at the start
             if (Canvas.GetLeft(Player) <= 0)
             {
-                
                 Canvas.SetLeft(Player, 0);
             }
 
 
-
-            
+            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
 
             // Ground Collision
-            Rect playerRect = new(Canvas.GetLeft(Player), Canvas.GetBottom(Player), Player.Width, Player.Height);
-            Rect groundRect = new(Canvas.GetLeft(Ground), Canvas.GetBottom(Ground), Ground.Width, Ground.Height);
-            if (playerRect.IntersectsWith(groundRect))
-            {
-                speedY = 0;
-                Canvas.SetBottom(Player, Canvas.GetBottom(Ground) + Ground.Height);
-                onGround = true;
-            }
+            onGround = level.GroundCollision(GameCanvas, Player, lastCoordinate);
+            if (onGround) speedY = 0;
 
             // Platform Collision
             foreach (var platform in level.Platforms)
@@ -278,7 +285,7 @@ namespace ProjectGameInteraction
                 // Enemy Collision
                 if (!enemyRect.IntersectsWith(playerRect)) continue; // no collision
 
-                if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + Enemy.ENEMYHEIGHT) // player jumps on top of enemy
+                if (lastCoordinate.y > Canvas.GetBottom(enemy.Element) + enemy.Height) // player jumps on top of enemy
                 {
                     speedY = 30;
                     enemiesToRemove.Add(enemy);
@@ -304,7 +311,7 @@ namespace ProjectGameInteraction
 
 
             // Player out of bounds
-            if (Canvas.GetBottom(Player) < -100)
+            if (Canvas.GetBottom(Player) < -200)
             {
                 gameTimer.Stop();
                 GameOverScherm GOwindow = new();
@@ -313,10 +320,11 @@ namespace ProjectGameInteraction
             }
 
 
-            collectedCoins += level.CheckCoinCollision(GameCanvas, Player);
+            collectedCoins += level.CoinCollision(GameCanvas, Player);
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
+            Coords.Text = $"{lastCoordinate.x},{lastCoordinate.y}";
         }
         
     }
