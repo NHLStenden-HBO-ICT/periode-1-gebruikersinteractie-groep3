@@ -16,6 +16,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>	  
 	</Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Afbeeldingen\citybackgroundx4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Afbeeldingen\citybackgroundx4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Afbeeldingen\citybackgroundx4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
 	
 
   <ItemGroup>
