@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,12 +21,34 @@ namespace ProjectGameInteraction
     /// </summary>
     public partial class parentalcontrolmenu : Window
     {
-        
+        private string savedPin;
+
         public parentalcontrolmenu()
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
+            savedPin = string.Empty;
+            string? line;
+            try
+            {
+                StreamReader sr = new("pincode.txt");
+                line = sr.ReadLine();
+                while (line != null)
+                {
+                    if (line.StartsWith("pin:"))
+                    {
+                        savedPin = line.Split(':')[1].TrimEnd();
+                    }
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+            }
+            PinInputTextBox.Focus();
         }
 
         private void ReturnClick(object sender, RoutedEventArgs e)
@@ -32,38 +56,55 @@ namespace ProjectGameInteraction
             Close();
         }
 
-        private string savedPin = "";
+        private void IsNumber(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
         private void SetPinButton_Click(object sender, RoutedEventArgs e)
         {
-            string newPin = PinInputTextBox.Text;
-
-            if (!string.IsNullOrWhiteSpace(newPin))
+            if (PinInputTextBox.Text.Length != 4)
             {
-                savedPin = newPin;
+                MessageBox.Show("Voer een geldige pincode in.");
+                PinInputTextBox.Clear();
+                PinInputTextBox.Focus();
+                return;
+            }
+            if (savedPin != string.Empty)
+            {
+                MessageBox.Show("Pincode is al ingesteld.");
+                PinInputTextBox.Clear();
+                PinInputTextBox.Focus();
+                return;
+            }
+
+            try
+            {
+                StreamWriter sw = new StreamWriter("pincode.txt");
+                sw.WriteLine("pin:" + PinInputTextBox.Text);
+                sw.Close();
                 MessageBox.Show("Pincode ingesteld.");
                 PinInputTextBox.Clear();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Voer een geldige pincode in.");
+                Console.WriteLine("Exception: " + ex.Message);
             }
         }
 
         private void UnlockButton_Click(object sender, RoutedEventArgs e)
         {
-            string enteredPin = EnteredPinTextBox.Text;
-
-            if (enteredPin == savedPin)
-            {
-                ParentalControlTimerSet parentalTimerset = new ParentalControlTimerSet();
-                parentalTimerset.Show();
-                this.Close();
-            }
-            else
+            if (savedPin == string.Empty || PinInputTextBox.Text.Length != 4 || PinInputTextBox.Text != savedPin)
             {
                 MessageBox.Show("Onjuiste pincode. Probeer opnieuw.");
-                EnteredPinTextBox.Clear();
+                PinInputTextBox.Clear();
+                PinInputTextBox.Focus();
+                return;
             }
+            ParentalControlTimerSet parentalTimerset = new ParentalControlTimerSet();
+            parentalTimerset.Show();
+            Close();
         }
 
         private void PinInputTextBox_TextChanged(object sender, TextChangedEventArgs e)

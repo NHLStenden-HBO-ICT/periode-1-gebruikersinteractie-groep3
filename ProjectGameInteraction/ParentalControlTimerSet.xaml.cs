@@ -43,7 +43,7 @@ namespace ProjectGameInteraction
         {
             if (!timerRunning)
             {
-                if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0 && minutes <= 60)
+                if (int.TryParse(timerTextBox.Text, out int minutes) && minutes > 0)
                 {
                     // Converteer de ingevoerde minuten naar seconden
                     timerDuration = minutes * 60;
@@ -58,7 +58,7 @@ namespace ProjectGameInteraction
                 }
                 else
                 {
-                    MessageBox.Show("Voer een geldige timerduur in (positieve gehele getallen minder dan of gelijk aan 60 minuten).");
+                    MessageBox.Show("Voer een geldige timerduur in (positieve gehele getallen).");
                 }
             }
             else
@@ -67,7 +67,7 @@ namespace ProjectGameInteraction
             }
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object? sender, EventArgs e)
         {
             if (timerDuration > 0)
             {

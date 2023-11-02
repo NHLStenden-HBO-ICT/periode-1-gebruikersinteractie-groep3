@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace ProjectGameInteraction
 
         public MainWindow()
         {
+            if (!File.Exists("pincode.txt")) File.Create("pincode.txt");
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
@@ -33,7 +35,7 @@ namespace ProjectGameInteraction
             mediaPlayer.MediaEnded += new EventHandler(Media_Ended);
             mediaPlayer.Play();
 
-            if ((bool)Properties.Settings.Default.setting == true)
+            if (Properties.Settings.Default.setting)
             {
                 mediaPlayer.Play();
             }
@@ -41,7 +43,7 @@ namespace ProjectGameInteraction
 
         private void Media_Ended(object sender, EventArgs e)
         {
-            if ((bool)Properties.Settings.Default.setting == true)
+            if (Properties.Settings.Default.setting)
             {
                 mediaPlayer.Position = TimeSpan.Zero;
                 mediaPlayer.Play();
