@@ -14,10 +14,10 @@
                AllowsTransparency="True">
             <Grid>
                 <Rectangle Margin="100,100,500,50" Width="700" Height="800" Fill="#555555" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Name="ResumeButton" FontFamily="Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="500,100,100,100" Background="#fff500" Content="Hervatten" Click="ResumeButtonClick" Height="50" Width="250" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                <Button Name="Hoofdmenu" FontFamily="Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="150,100,100,100" Background="#fff500" Content="Hoofdmenu" Click="HoofdmenuClick" Height="50" Width="250" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <Button Name="ResumeButton" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="500,100,100,100" Background="#fff500" Content="Hervatten" Click="ResumeButtonClick" Height="75" Width="250" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <Button Name="Hoofdmenu" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="150,100,100,100" Background="#fff500" Content="Hoofdmenu" Click="HoofdmenuClick" Height="75" Width="250" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                 <Border   BorderThickness="3" BorderBrush="#000000" HorizontalAlignment="Center"  Background="#8b00ff" CornerRadius="50" Margin="120,140,520,0" VerticalAlignment="Top" Width="400" Height="150">
-                    <Label Content="Pauze" FontFamily="Baloo Bhai 2" HorizontalAlignment="Center" VerticalAlignment="center" Foreground="#000000" FontSize="130"/>
+                    <Label Content="Pauze" FontFamily="./Fonts/#Baloo Bhai 2"  HorizontalAlignment="Center" VerticalAlignment="center" Foreground="#000000" FontSize="130" Height="175"/>
                 </Border>
             </Grid>
         </Popup>
@@ -26,7 +26,7 @@
             <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent" IsTabStop="False">
                 <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
             </Button>
-            <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="1600" Canvas.Top="18" />
+            <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="1264" Canvas.Top="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <!--coins counter-->
             <Grid HorizontalAlignment="Left"  VerticalAlignment="Bottom" Height="450" Width="800">
                 <Image x:Name="Coins_Count_Symbol" Source="/Afbeeldingen/3885422.png" Margin="55,-1,686,374">
