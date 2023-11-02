@@ -14,17 +14,16 @@
                AllowsTransparency="True">
             <Grid>
                 <Rectangle Margin="100,100,500,50" Width="700" Height="800" Fill="#555555" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Name="ResumeButton" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="100,100,550,100" Background="#fff500" Content="Hervatten" Click="ResumeButtonClick" Height="50" Width="250" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <Button Name="Hoofdmenu" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="150,100,100,100" Background="#fff500" Content="Hoofdmenu" Click="HoofdmenuClick" Height="50" Width="250" HorizontalAlignment="left" VerticalAlignment="Bottom"/>
+                <Button Name="ResumeButton" FontFamily="Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="500,100,100,100" Background="#fff500" Content="Hervatten" Click="ResumeButtonClick" Height="50" Width="250" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <Button Name="Hoofdmenu" FontFamily="Baloo Bhai 2" FontSize="45" BorderThickness="2" BorderBrush="#000000" Margin="150,100,100,100" Background="#fff500" Content="Hoofdmenu" Click="HoofdmenuClick" Height="50" Width="250" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                 <Border   BorderThickness="3" BorderBrush="#000000" HorizontalAlignment="Center"  Background="#8b00ff" CornerRadius="50" Margin="120,140,520,0" VerticalAlignment="Top" Width="400" Height="150">
-                    <Label Content="Pauze" FontFamily="./Fonts/#Baloo Bhai 2" HorizontalAlignment="Center" VerticalAlignment="center" Foreground="#000000" FontSize="130"/>
+                    <Label Content="Pauze" FontFamily="Baloo Bhai 2" HorizontalAlignment="Center" VerticalAlignment="center" Foreground="#000000" FontSize="130"/>
                 </Border>
             </Grid>
         </Popup>
         <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="3600" Height="Auto">
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
-            <Rectangle Name="Ground" Fill="Green" Width="1350" Height="40" Canvas.Left="0" Canvas.Bottom="0"/>
-            <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent">
+            <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent" IsTabStop="False">
                 <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
             </Button>
             <Label x:Name="TimerLabel" Content="" FontFamily="SemiBold" FontSize="30" Canvas.Left="1600" Canvas.Top="18" />
