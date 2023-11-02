@@ -63,7 +63,7 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-            2600,
+            3000,
             new List<Ground>() { new(0, 40, 1350), new(1600, 40, 2000) },
             new List<Coin>() {  new(250f, 60f),   new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484,200), new(2600,550), new(2700, 550), new(2800, 550) },
             new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150), 
