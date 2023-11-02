@@ -25,6 +25,11 @@ namespace ProjectGameInteraction
     {
         DispatcherTimer gameTimer = new DispatcherTimer();
         DispatcherTimer levelTimer = new DispatcherTimer();
+        private MediaPlayer Run;
+        private MediaPlayer Run2;
+        private MediaPlayer Jump;
+        private MediaPlayer Oof;
+
 
         private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
@@ -91,6 +96,16 @@ namespace ProjectGameInteraction
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             level.Draw(GameCanvas);
+
+            // geluidseffecten
+            Run = new MediaPlayer();
+            Run.Open(new Uri("Afbeeldingen\\run2.wav", UriKind.Relative));
+            Run2 = new MediaPlayer();
+            Run2.Open(new Uri("Afbeeldingen\\run2.wav", UriKind.Relative));
+            Jump = new MediaPlayer();
+            Jump.Open(new Uri("Afbeeldingen\\jump.wav", UriKind.Relative));
+            Oof = new MediaPlayer();
+            Oof.Open(new Uri("Afbeeldingen\\oof.mp3", UriKind.Relative));
         }
 
         
@@ -120,15 +135,18 @@ namespace ProjectGameInteraction
                 case Key.Right:
                 case Key.D:
                     moveRight = true;
+                    PlaySoundEffect();
                     break;
                 case Key.Left:
                 case Key.A:
                     moveLeft = true;
+                    PlaySoundEffect();
                     break;
                 case Key.Up:
                 case Key.W:
                 case Key.Space:
                     jump = true;
+                    PlayJump();
                     break;
             }
         }
@@ -140,19 +158,40 @@ namespace ProjectGameInteraction
                 case Key.Right:
                 case Key.D:
                     moveRight = false;
+                    Run.Stop();
                     break;
                 case Key.Left:
                 case Key.A:
                     moveLeft = false;
+                    Run2.Stop();
                     break;
                 case Key.Up:
                 case Key.W:
                 case Key.Space:
                     jump = false;
+                    Jump.Stop();
                     break;
             }
         }
 
+        private void PlaySoundEffect() 
+        {
+            Run.Stop();
+            Run.Play();
+        }
+
+        private void PlayJump()
+        {
+            Jump.Stop();
+            Jump.Play();
+        }
+
+        private void Playoof()
+        {
+            Oof.Stop();
+            Oof.Play();
+        }
+        
         private bool finishWindowOpened = false;
 
         private void GameTick(object? sender, EventArgs e)
@@ -289,7 +328,7 @@ namespace ProjectGameInteraction
                 {
                     speedY = 30;
                     enemiesToRemove.Add(enemy);
-
+                    Playoof();
                 }
                 else
                 {
