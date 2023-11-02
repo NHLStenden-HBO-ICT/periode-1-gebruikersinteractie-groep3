@@ -25,6 +25,11 @@ namespace ProjectGameInteraction
     {
         DispatcherTimer gameTimer = new DispatcherTimer();
         DispatcherTimer levelTimer = new DispatcherTimer();
+        private MediaPlayer Run;
+        private MediaPlayer Run2;
+        private MediaPlayer Jump;
+        private MediaPlayer Oof;
+
 
         private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
@@ -58,11 +63,11 @@ namespace ProjectGameInteraction
         private const double GAMEWINDOWWIDTH = 800;
 
         private Level level = new(
-            2600,
+            3000,
             new List<Ground>() { new(0, 40, 1350), new(1600, 40, 2000) },
-            new List<Coin>() {  new(250f, 60f),   new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484,200) },
-            new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150),
-            new(1900, 320, 100), new(2100,440,50),new(2400,130,200) },
+            new List<Coin>() {  new(250f, 60f),   new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484,200), new(2600,550), new(2700, 550), new(2800, 550) },
+            new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150), 
+            new(1900, 320, 100), new(2100,440,50),new(2400,130,200), new(2600, 130, 100), new(2600,250,100),new(2600,370,100),new(2600,490,200) },
             new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f), new(1900,40,0),
 /*bird*/    new(1000,300,4,Color.FromRgb(117,117,117),Enemy.ENEMYHEIGHT,80),new(2000, 250, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80),
 /*nagat*/   new(2100, 400, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80) }
@@ -92,7 +97,15 @@ namespace ProjectGameInteraction
             WindowStyle = WindowStyle.None;
             level.Draw(GameCanvas);
 
-           
+            // geluidseffecten
+            Run = new MediaPlayer();
+            Run.Open(new Uri("Afbeeldingen\\run2.wav", UriKind.Relative));
+            Run2 = new MediaPlayer();
+            Run2.Open(new Uri("Afbeeldingen\\run2.wav", UriKind.Relative));
+            Jump = new MediaPlayer();
+            Jump.Open(new Uri("Afbeeldingen\\jump.wav", UriKind.Relative));
+            Oof = new MediaPlayer();
+            Oof.Open(new Uri("Afbeeldingen\\oof.mp3", UriKind.Relative));
         }
 
         
@@ -122,15 +135,18 @@ namespace ProjectGameInteraction
                 case Key.Right:
                 case Key.D:
                     moveRight = true;
+                    PlaySoundEffect();
                     break;
                 case Key.Left:
                 case Key.A:
                     moveLeft = true;
+                    PlaySoundEffect();
                     break;
                 case Key.Up:
                 case Key.W:
                 case Key.Space:
                     jump = true;
+                    PlayJump();
                     break;
             }
         }
@@ -142,28 +158,57 @@ namespace ProjectGameInteraction
                 case Key.Right:
                 case Key.D:
                     moveRight = false;
+                    Run.Stop();
                     break;
                 case Key.Left:
                 case Key.A:
                     moveLeft = false;
+                    Run2.Stop();
                     break;
                 case Key.Up:
                 case Key.W:
                 case Key.Space:
                     jump = false;
+                    Jump.Stop();
                     break;
             }
         }
 
+        private void PlaySoundEffect() 
+        {
+            Run.Stop();
+            Run.Play();
+        }
+
+        private void PlayJump()
+        {
+            Jump.Stop();
+            Jump.Play();
+        }
+
+        private void Playoof()
+        {
+            Oof.Stop();
+            Oof.Play();
+        }
+        
+        private bool finishWindowOpened = false;
+
         private void GameTick(object? sender, EventArgs e)
         {
-            if (level.Finished(Player))
+            if (level.Finished(Player) && !finishWindowOpened)
             {
-                //MessageBox.Show("Finished");
-                //Focus();
-                Close();
-                return;
+               
+                this.Close();
+
+                
+                finishWindowOpened = true;
+
+                // Maak een nieuw FinishWindow-venster en open het
+                FinishWindow finishWindow = new FinishWindow();
+                finishWindow.Show();
             }
+            else { }
 
             // Movement
             if (moveLeft && !moveRight)
@@ -198,7 +243,7 @@ namespace ProjectGameInteraction
             
             Coins_Count_Symbol.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-            ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            //ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             PauseButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             Coords.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
 
@@ -283,7 +328,7 @@ namespace ProjectGameInteraction
                 {
                     speedY = 30;
                     enemiesToRemove.Add(enemy);
-
+                    Playoof();
                 }
                 else
                 {

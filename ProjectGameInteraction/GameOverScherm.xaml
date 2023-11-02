@@ -12,7 +12,7 @@
         <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Speel opnieuw" Width="120" Height="40" FontSize="16" Background="#000000" Foreground="White" Margin="340,249,340,145" Click="SpeelOpnieuwClick" />
         <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Hoofdmenu" Width="120" Height="40" FontSize="16" Background="#000000" Foreground="White" Margin="340,307,340,87" Click="HoofdmenuClick" />
 
-        <MediaElement Name="mediaElement"  Source="Afbeeldingen\lego-yoda-death-sound-effect.mp3 "/>
+        <MediaElement Name="mediaElement"  Source="Afbeeldingen\death.mp3 "/>
         
 
     </Grid>
