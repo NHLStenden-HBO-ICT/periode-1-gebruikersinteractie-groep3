@@ -191,16 +191,24 @@ namespace ProjectGameInteraction
             Oof.Stop();
             Oof.Play();
         }
+        
+        private bool finishWindowOpened = false;
 
         private void GameTick(object? sender, EventArgs e)
         {
-            if (level.Finished(Player))
+            if (level.Finished(Player) && !finishWindowOpened)
             {
-                //MessageBox.Show("Finished");
-                //Focus();
-                Close();
-                return;
+               
+                this.Close();
+
+                
+                finishWindowOpened = true;
+
+                // Maak een nieuw FinishWindow-venster en open het
+                FinishWindow finishWindow = new FinishWindow();
+                finishWindow.Show();
             }
+            else { }
 
             // Movement
             if (moveLeft && !moveRight)
@@ -235,7 +243,7 @@ namespace ProjectGameInteraction
             
             Coins_Count_Symbol.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-            ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            //ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             PauseButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             Coords.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
 
