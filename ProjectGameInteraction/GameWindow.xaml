@@ -21,7 +21,7 @@
                 </Border>
             </Grid>
         </Popup>
-        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp" Background="LightBlue" Width="3600" Height="Auto">
+        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp"  Width="3600" Height="Auto">
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
             <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent" IsTabStop="False">
                 <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
@@ -34,7 +34,9 @@
                 <TextBlock FontFamily="./Fonts/#Baloo Bhai 2"  x:Name="coinCountTextBlock" FontSize="40" Width="100" Height="60" Canvas.Left="0" Canvas.Bottom="100" Margin="91,7,609,393" TextAlignment="Center"><Run Language="nl-nl" Text="0"/></TextBlock>
             </Grid>
             <TextBlock x:Name="Coords" FontSize="40" Width="200" Height="60" Canvas.Left="0" Canvas.Bottom="300"/>
-
+            <Canvas.Background>
+                <ImageBrush ImageSource="pack://application:,,,/afbeeldingen/citybackgroundx4.png"/>
+            </Canvas.Background>
         </Canvas>
     </Grid>
 </Window>
