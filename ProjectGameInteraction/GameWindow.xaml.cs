@@ -153,15 +153,23 @@ namespace ProjectGameInteraction
             }
         }
 
+        private bool finishWindowOpened = false;
+
         private void GameTick(object? sender, EventArgs e)
         {
-            if (level.Finished(Player))
+            if (level.Finished(Player) && !finishWindowOpened)
             {
-                //MessageBox.Show("Finished");
-                //Focus();
-                Close();
-                return;
+               
+                this.Close();
+
+                
+                finishWindowOpened = true;
+
+                // Maak een nieuw FinishWindow-venster en open het
+                FinishWindow finishWindow = new FinishWindow();
+                finishWindow.Show();
             }
+            else { }
 
             // Movement
             if (moveLeft && !moveRight)

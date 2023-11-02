@@ -1,0 +1,15 @@
+﻿<Window x:Class="ProjectGameInteraction.FinishWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectGameInteraction"
+        mc:Ignorable="d"
+        Title="FinishWindow" Height="450" Width="800">
+    <Grid Background="#fff500">
+
+        <TextBlock FontFamily="./Fonts/#Baloo Bhai 2"  Text="Gefeliciteerd!" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="60" Foreground="White" FontWeight="Bold" Margin="0,107,0,0"  />
+        <TextBlock FontFamily="./Fonts/#Baloo Bhai 2"  Text="Je hebt het level behaald!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" Foreground="White" FontWeight="Bold" />
+        <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Hoofdmenu" Width="120" Height="40" FontSize="16" Background="#8b00ff" Foreground="White" Margin="340,307,340,87" Click="HoofdmenuClick" />
+    </Grid>
+</Window>
