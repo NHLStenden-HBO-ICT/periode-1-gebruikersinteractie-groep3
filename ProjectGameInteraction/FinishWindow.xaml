@@ -11,5 +11,6 @@
         <TextBlock FontFamily="./Fonts/#Baloo Bhai 2"  Text="Gefeliciteerd!" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="60" Foreground="Black" FontWeight="Bold" Margin="0,107,0,0"  />
         <TextBlock FontFamily="./Fonts/#Baloo Bhai 2"  Text="Je hebt het level behaald!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" Foreground="Black" FontWeight="Bold" />
         <Button FontFamily="./Fonts/#Baloo Bhai 2"  Content="Hoofdmenu" Width="120" Height="40" FontSize="16" Background="#8b00ff" Foreground="White" Margin="340,307,340,87" Click="HoofdmenuClick" />
+        <MediaElement Name="mediaElement"  Source="Afbeeldingen\Child.mp3 "/>
     </Grid>
 </Window>
