@@ -28,7 +28,7 @@ namespace ProjectGameInteraction
 
         private void HoofdmenuClick(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Close();
         }
     }
 }

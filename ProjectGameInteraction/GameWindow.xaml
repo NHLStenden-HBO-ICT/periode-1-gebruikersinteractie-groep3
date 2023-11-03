@@ -21,7 +21,7 @@
                 </Border>
             </Grid>
         </Popup>
-        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp"  Width="3600" Height="Auto">
+        <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp"  Width="4200" Height="Auto">
             <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
             <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent" IsTabStop="False">
                 <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
