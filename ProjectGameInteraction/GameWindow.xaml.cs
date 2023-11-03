@@ -363,7 +363,6 @@ namespace ProjectGameInteraction
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
-            Coords.Text = $"{lastCoordinate.x},{lastCoordinate.y}";
         }
         
     }

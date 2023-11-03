@@ -22,7 +22,15 @@
             </Grid>
         </Popup>
         <Canvas Name="GameCanvas" Focusable="True" KeyDown="IsKeyDown" KeyUp="IsKeyUp"  Width="3600" Height="Auto">
-            <Rectangle Name="Player" Fill="DarkBlue" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40"/>
+            <Rectangle Name="Player" Width="40" Height="60" Canvas.Left="40" Canvas.Bottom="40">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="pack://application:,,,/afbeeldingen/Yoda.png">
+                        <ImageBrush.Transform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
             <Button Name="PauseButton" Click="PauseButtonClick" BorderThickness="0" Canvas.Left="632" Canvas.Top="10" Background="Transparent" IsTabStop="False">
                 <Image Source="pack://application:,,,/afbeeldingen/Pauze.png" Height="40"/>
             </Button>
