@@ -36,7 +36,7 @@ namespace ProjectGameInteraction
         private (double x, double y) lastCoordinate;
         private double enemySpeed = 3;
         
-        private const int LEVELTIME = 300;
+        private const int LEVELTIME = 120;
 
         private void PauseButtonClick(object sender, RoutedEventArgs e)
         {
