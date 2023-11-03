@@ -16,6 +16,6 @@
         <Button Content="Start Timer" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45"  Width="250" Height="75" Click="StartTimer_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,681,0,0" RenderTransformOrigin="0.891,0.035" />
         <Button Content="Reset Timer" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="45" Width="250" Height="75" Click="ResetTimer_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,779,0,0" />
         <Label Content="Resterende tijd:" HorizontalContentAlignment="Center" FontFamily="./Fonts/#Baloo Bhai 2" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Height="273" Margin="0,56,0,0" VerticalAlignment="Top" Width="700" Padding="160,18" Background="LightGray"/>
-        <TextBlock Text="" TextAlignment="Center" Name="timerDisplay" FontFamily="./Fonts/#Digital-7 (mono)"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,116,0,0" FontSize="200" Width="680" Height="200" Background="Transparent"  />
+        <TextBlock Text="" TextAlignment="Center" Name="timerDisplay" FontFamily="./Fonts/#Digital-7 (mono)"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,151,0,0" FontSize="150" Width="680" Height="200" Background="Transparent"  />
     </Grid>
 </Window>
