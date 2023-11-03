@@ -56,6 +56,8 @@ namespace ProjectGameInteraction
 
         private void HoofdmenuClick(object sender, RoutedEventArgs e)
         {
+            levelTimer.Stop();
+            gameTimer.Stop();
             Close();
         }
 
@@ -116,8 +118,10 @@ namespace ProjectGameInteraction
             {
                 GameOverScherm GOwindow = new();
                 GOwindow.Show();
-                Close();
                 levelTimer.Stop();
+                gameTimer.Stop();
+                Close();
+                
             } else
             {
                 levelTime--;
@@ -199,7 +203,7 @@ namespace ProjectGameInteraction
             if (level.Finished(Player) && !finishWindowOpened)
             {
                
-                this.Close();
+                
 
                 
                 finishWindowOpened = true;
@@ -207,6 +211,10 @@ namespace ProjectGameInteraction
                 // Maak een nieuw FinishWindow-venster en open het
                 FinishWindow finishWindow = new FinishWindow();
                 finishWindow.Show();
+                gameTimer.Stop();
+                levelTimer.Stop();
+                this.Close();
+
             }
             else { }
 
@@ -337,6 +345,7 @@ namespace ProjectGameInteraction
                     gameTimer.Stop();
                     GameOverScherm GOwindow = new();
                     GOwindow.Show();
+                    levelTimer.Stop();
                     Close();
                 }
             }
@@ -354,6 +363,7 @@ namespace ProjectGameInteraction
                 gameTimer.Stop();
                 GameOverScherm GOwindow = new();
                 GOwindow.Show();
+                levelTimer.Stop();
                 Close();
             }
 
