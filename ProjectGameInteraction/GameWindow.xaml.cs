@@ -245,7 +245,7 @@ namespace ProjectGameInteraction
             coinCountTextBlock.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             //ResumeButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
             PauseButton.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
-            Coords.RenderTransform = new TranslateTransform(cameraOffsetX, 0);
+            
 
             // Jump
             if (jump && onGround)
@@ -363,7 +363,6 @@ namespace ProjectGameInteraction
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));
-            Coords.Text = $"{lastCoordinate.x},{lastCoordinate.y}";
         }
         
     }
