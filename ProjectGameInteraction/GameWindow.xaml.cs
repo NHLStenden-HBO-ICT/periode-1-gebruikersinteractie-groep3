@@ -29,13 +29,16 @@ namespace ProjectGameInteraction
         private MediaPlayer Run2;
         private MediaPlayer Jump;
         private MediaPlayer Oof;
+        private MediaPlayer coinkling;
+
+
 
 
         private bool moveLeft, moveRight, jump, onGround;
         private double speedX, speedY, speed = 10;
         private (double x, double y) lastCoordinate;
         private double enemySpeed = 3;
-        
+
         private const int LEVELTIME = 120;
 
         private void PauseButtonClick(object sender, RoutedEventArgs e)
@@ -67,8 +70,8 @@ namespace ProjectGameInteraction
         private Level level = new(
             3000,
             new List<Ground>() { new(0, 40, 1350), new(1600, 40, 2000) },
-            new List<Coin>() {  new(250f, 60f),   new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484,200), new(2600,550), new(2700, 550), new(2800, 550) },
-            new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150), 
+            new List<Coin>() { new(250f, 60f), new(484f, 180f), new(650f, 60f), new(1200f, 480f), new(2110, 500), new(2110, 560), new(2484, 200), new(2600, 550), new(2700, 550), new(2800, 550) },
+            new List<Platform>() { new(400f, 130f, 200f), new(900f, 130f, 200f),  new(1000, 330, 100), new(1200f, 230f, 100),new(1200f, 430f, 200), new(1700, 200, 150),
             new(1900, 320, 100), new(2100,440,50),new(2400,130,200), new(2600, 130, 100), new(2600,250,100),new(2600,370,100),new(2600,490,200) },
             new List<Enemy>() { new(600f, 40, 3f), new(1000f, 40, 3f), new(1900,40,0),
 /*bird*/    new(1000,300,4,Color.FromRgb(117,117,117),Enemy.ENEMYHEIGHT,80),new(2000, 250, 1, Color.FromRgb(117, 117, 117), Enemy.ENEMYHEIGHT, 80),
@@ -108,7 +111,15 @@ namespace ProjectGameInteraction
             Jump.Open(new Uri("Afbeeldingen\\jump.wav", UriKind.Relative));
             Oof = new MediaPlayer();
             Oof.Open(new Uri("Afbeeldingen\\oof.mp3", UriKind.Relative));
+            coinkling = new MediaPlayer();
+            coinkling.Open(new Uri("Afbeeldingen\\coinsoundeffect.mp3", UriKind.Relative));
+
+
         }
+        
+        
+            
+      
 
         
         private int levelTime;
@@ -368,7 +379,13 @@ namespace ProjectGameInteraction
             }
 
 
+            var lastCoinCount = collectedCoins;
             collectedCoins += level.CoinCollision(GameCanvas, Player);
+            if (collectedCoins > lastCoinCount)
+            {
+                coinkling.Stop();
+                coinkling.Play();
+            }
             coinCountTextBlock.Text = collectedCoins.ToString();
 
             lastCoordinate = (Canvas.GetLeft(Player), Canvas.GetBottom(Player));

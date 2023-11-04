@@ -207,6 +207,7 @@ namespace ProjectGameInteraction
             {
                 if (coin.IntersectsWith(playerRect))
                 {
+
                     coinsToRemove.Add(coin);
                     collectedCoins++;
                 }
